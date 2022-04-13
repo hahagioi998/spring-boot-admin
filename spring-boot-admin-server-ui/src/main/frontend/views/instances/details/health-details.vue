@@ -26,24 +26,43 @@
       <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
         <sba-status-badge :status="health.status" />
 
-        <dl v-if="details && details.length > 0" class="grid grid-cols-2 mt-2">
-          <template v-for="detail in details" :key="detail.name">
-            <dt class="font-medium" v-text="detail.name" />
+        <dl
+          v-if="details && details.length > 0"
+          class="grid grid-cols-2 mt-2"
+        >
+          <template
+            v-for="detail in details"
+            :key="detail.name"
+          >
+            <dt
+              class="font-medium"
+              v-text="detail.name"
+            />
             <dd
               v-if="name === 'diskSpace'"
               v-text="typeof detail.value === 'number' ? prettyBytes(detail.value) : detail.value"
             />
             <dd v-else-if="typeof detail.value === 'object'">
-              <pre class="is-breakable" v-text="toJson(detail.value)" />
+              <pre
+                class="is-breakable"
+                v-text="toJson(detail.value)"
+              />
             </dd>
-            <dd v-else class="is-breakable" v-text="detail.value" />
+            <dd
+              v-else
+              class="is-breakable"
+              v-text="detail.value"
+            />
           </template>
         </dl>
       </dd>
     </div>
 
     <health-details
-      v-for="(child, idx) in childHealth" :key="child.name" :index="idx+1" :name="child.name"
+      v-for="(child, idx) in childHealth"
+      :key="child.name"
+      :index="idx+1"
+      :name="child.name"
       :health="child.value"
     />
   </div>

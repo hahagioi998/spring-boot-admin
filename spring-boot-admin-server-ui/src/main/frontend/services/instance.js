@@ -78,9 +78,7 @@ class Instance {
   }
 
   async fetchHealth() {
-    return await this.axios.get(uri`actuator/health`, {
-      validateStatus: null
-    });
+    return await this.axios.get(uri`actuator/health`);
   }
 
   async fetchEnv(name) {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import SbaModal from './sba-modal';
+import SbaModal from './sba-modal.vue';
 import i18n from '@/i18n';
 
 export default {
@@ -22,11 +22,11 @@ export default {
   title: 'SBA Components/Modal',
 };
 
-const Template = (args, {argTypes}) => ({
+const Template = (args) => ({
   components: {SbaModal},
-  props: Object.keys(argTypes),
+  setup() { return { args }; },
   template: `
-    <sba-modal v-model="$props.open" v-bind="$props">
+    <sba-modal v-model="$props.open" v-bind="args">
       <template v-if="${'header' in args}" v-slot:header>${args.header}</template>
       <template v-if="${'body' in args}" v-slot:default>${args.body}</template>
       <template v-if="${'footer' in args}" v-slot:footer>${args.footer}</template>

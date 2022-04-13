@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import subscribing from '@/mixins/subscribing';
+import subscribing from '../../../mixins/subscribing.js';
 import {timer} from '@/utils/rxjs';
 import moment from 'moment';
 import {h} from 'vue';

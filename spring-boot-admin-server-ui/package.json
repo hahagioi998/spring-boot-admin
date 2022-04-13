@@ -6,7 +6,9 @@
     "build": "vite build --emptyOutDir",
     "build:dev": "vite build --emptyOutDir --sourcemap --mode development",
     "build:watch": "vite build --emptyOutDir --watch --sourcemap --mode development",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.36",
@@ -43,23 +45,34 @@
     "vue3-click-away": "^1.2.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.9",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
+    "@storybook/addon-actions": "^6.4.21",
+    "@storybook/addon-essentials": "^6.4.21",
+    "@storybook/addon-links": "^6.4.21",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/builder-vite": "^0.1.28",
+    "@storybook/vue3": "^6.4.21",
     "@testing-library/jest-dom": "5.16.4",
     "@testing-library/user-event": "14.1.0",
     "@testing-library/vue": "6.5.1",
     "@vitejs/plugin-vue": "2.3.0",
     "@vue/vue3-jest": "26.0.1",
     "autoprefixer": "10.4.4",
+    "babel-loader": "^8.2.4",
     "eslint": "^6.8.0",
+    "eslint-plugin-storybook": "^0.5.8",
     "eslint-plugin-vue": "8.6.0",
     "jest-environment-jsdom": "^27.5.1",
     "jest-transform-stub": "^2.0.0",
-    "msw": "0.39.2",
+    "msw": "^0.39.2",
+    "msw-storybook-addon": "^1.6.3",
     "postcss": "8.4.12",
     "tailwindcss": "3.0.23",
     "vite": "2.9.0",
-    "vite-plugin-static-copy": "^0.4.4"
+    "vite-plugin-static-copy": "^0.4.4",
+    "vue-loader": "^16.8.3"
   },
   "browserslist": [
     "> 1%",

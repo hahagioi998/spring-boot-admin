@@ -7,8 +7,8 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   components: { SbaStatus },
-  props: Object.keys(argTypes),
-  template: '<sba-status v-bind="$props" />',
+  setup() { return { args }; },
+  template: '<sba-status v-bind="args" />',
 });
 
 export const Status = Template.bind({})

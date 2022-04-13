@@ -16,7 +16,10 @@
 
 <template>
   <section class="wallboard section">
-    <p v-if="!applicationsInitialized" class="is-muted is-loading">
+    <p
+      v-if="!applicationsInitialized"
+      class="is-muted is-loading"
+    >
       Loading applications...
     </p>
     <hex-mesh
@@ -26,15 +29,27 @@
       @click="select"
     >
       <template #item="{item: application}">
-        <div :key="application.name" class="hex__body application">
+        <div
+          :key="application.name"
+          class="hex__body application"
+        >
           <div class="application__header application__time-ago is-muted">
             <sba-time-ago :date="application.statusTimestamp" />
           </div>
           <div class="application__body">
-            <h1 class="application__name" v-text="application.name" />
-            <p class="application__instances is-muted" v-text="$tc('wallboard.instances_count', application.instances.length)" />
+            <h1
+              class="application__name"
+              v-text="application.name"
+            />
+            <p
+              class="application__instances is-muted"
+              v-text="$tc('wallboard.instances_count', application.instances.length)"
+            />
           </div>
-          <h2 class="application__footer application__version" v-text="application.buildVersion" />
+          <h2
+            class="application__footer application__version"
+            v-text="application.buildVersion"
+          />
         </div>
       </template>
     </hex-mesh>
@@ -43,7 +58,7 @@
 
 <script>
   import hexMesh from './hex-mesh.vue';
-  import {HealthStatus} from '@/healthStatus';
+  import {HealthStatus} from '../../HealthStatus.js';
 
   export default {
     components: {hexMesh},

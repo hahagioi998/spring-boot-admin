@@ -1,21 +1,21 @@
-import SbaPanel from './sba-panel';
+import SbaPanel from './sba-panel.vue';
 
 export default {
   component: SbaPanel,
   title: 'SBA Components/Panel',
 };
 
-const Template = (args, {argTypes}) => {
+const Template = (args) => {
   return {
     components: {SbaPanel},
-    props: Object.keys(argTypes),
+    setup() { return { args }; },
     methods: {
       onClose(event) {
         alert('Close clicked! ' + JSON.stringify(event))
       }
     },
     template: `
-      <sba-panel @close="onClose" v-bind="$props" >
+      <sba-panel @close="onClose" v-bind="args" >
         <template v-slot:actions v-if="${'actions' in args}">
           ${args.actions}
         </template>
@@ -109,4 +109,10 @@ export const WithTitleAndFooter = Template.bind({});
 WithTitleAndFooter.args = {
   ...WithTitle.args,
   footer: 'Hello from the footer!'
+};
+
+export const LoadingContent = Template.bind({});
+LoadingContent.args = {
+  ...WithTitle.args,
+  loading: true
 };

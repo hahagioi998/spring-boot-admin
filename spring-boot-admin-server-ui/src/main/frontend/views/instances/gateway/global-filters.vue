@@ -16,10 +16,20 @@
 
 <template>
   <div :class="{ 'is-loading' : isLoading }">
-    <sba-alert v-if="error" :error="error" :title="$t('instances.gateway.filters.fetch_failed')" />
+    <sba-alert
+      v-if="error"
+      :error="error"
+      :title="$t('term.fetch_failed')"
+    />
 
-    <sba-panel :header-sticks-below="['#navigation']" title="Global Filters">
-      <div v-if="globalFilters.length > 0" class="field">
+    <sba-panel
+      :header-sticks-below="['#navigation']"
+      title="Global Filters"
+    >
+      <div
+        v-if="globalFilters.length > 0"
+        class="field"
+      >
         <p class="control is-expanded has-icons-left">
           <input
             v-model="filterCriteria"
@@ -40,7 +50,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="filter in globalFilters" :key="filter.name">
+          <tr
+            v-for="filter in globalFilters"
+            :key="filter.name"
+          >
             <td>
               <span
                 class="is-breakable"
@@ -54,9 +67,19 @@
             <td v-text="filter.order" />
           </tr>
           <tr v-if="globalFilters.length === 0">
-            <td class="is-muted" colspan="7 ">
-              <p v-if="isLoading" class="is-loading" v-text="$t('instances.gateway.filters.loading')" />
-              <p v-else v-text="$t('instances.gateway.filters.no_filters_found')" />
+            <td
+              class="is-muted"
+              colspan="7 "
+            >
+              <p
+                v-if="isLoading"
+                class="is-loading"
+                v-text="$t('instances.gateway.filters.loading')"
+              />
+              <p
+                v-else
+                v-text="$t('instances.gateway.filters.no_filters_found')"
+              />
             </td>
           </tr>
         </tbody>

@@ -1,5 +1,8 @@
 <template>
-  <span :class="classNames('status-badge', status.toLowerCase())" v-text="status" />
+  <span
+    :class="classNames('status-badge', healthStatus)"
+    v-text="status"
+  />
 </template>
 
 <script>
@@ -9,16 +12,21 @@ import {HealthStatus} from '../HealthStatus.js';
 export default {
   props: {
     status: {
-      type: [HealthStatus, String],
+      type: [HealthStatus, String, Number],
       required: true,
       validator(value) {
         return HealthStatus.hasOwnProperty(value.toUpperCase());
       }
     }
   },
+  computed: {
+    healthStatus() {
+      return `${this.status}`.toLowerCase()
+    }
+  },
   methods: {
     classNames
-  },
+  }
 }
 </script>
 

@@ -16,9 +16,19 @@
 
 <template>
   <div id="app">
-    <sba-navbar :views="mainViews" :applications="applications" :error="error" :applications-initialized="applicationsInitialized" />
+    <sba-navbar
+      :views="mainViews"
+      :applications="applications"
+      :error="error"
+      :applications-initialized="applicationsInitialized"
+    />
     <div class="mt-14">
-      <router-view :views="childViews" :applications="applications" :error="error" :applications-initialized="applicationsInitialized" />
+      <router-view
+        :views="childViews"
+        :applications="applications"
+        :error="error"
+        :applications-initialized="applicationsInitialized"
+      />
     </div>
   </div>
 </template>

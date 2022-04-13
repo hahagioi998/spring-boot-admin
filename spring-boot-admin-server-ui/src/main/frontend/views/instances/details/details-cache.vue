@@ -15,37 +15,74 @@
   -->
 
 <template>
-  <sba-panel v-if="hasLoaded" :title="`Cache: ${cacheName}`">
+  <sba-panel
+    v-if="hasLoaded"
+    :title="`Cache: ${cacheName}`"
+  >
     <div>
-      <sba-alert v-if="error" :error="error" :title="$t('instances.details.cache.fetch_failed')" />
+      <sba-alert
+        v-if="error"
+        :error="error"
+        :title="$t('term.fetch_failed')"
+      />
 
-      <div v-if="current" class="level cache-current">
-        <div v-if="current.hit !== undefined" class="level-item has-text-centered">
+      <div
+        v-if="current"
+        class="level cache-current"
+      >
+        <div
+          v-if="current.hit !== undefined"
+          class="level-item has-text-centered"
+        >
           <div>
-            <p class="heading has-bullet has-bullet-info" v-text="$t('instances.details.cache.hits')" />
+            <p
+              class="heading has-bullet has-bullet-info"
+              v-text="$t('instances.details.cache.hits')"
+            />
             <p v-text="current.hit" />
           </div>
         </div>
-        <div v-if="current.miss !== undefined" class="level-item has-text-centered">
+        <div
+          v-if="current.miss !== undefined"
+          class="level-item has-text-centered"
+        >
           <div>
-            <p class="heading has-bullet has-bullet-warning" v-text="$t('instances.details.cache.misses')" />
+            <p
+              class="heading has-bullet has-bullet-warning"
+              v-text="$t('instances.details.cache.misses')"
+            />
             <p v-text="current.miss" />
           </div>
         </div>
-        <div v-if="ratio !== undefined" class="level-item has-text-centered">
+        <div
+          v-if="ratio !== undefined"
+          class="level-item has-text-centered"
+        >
           <div>
-            <p class="heading" v-text="$t('instances.details.cache.hit_ratio')" />
+            <p
+              class="heading"
+              v-text="$t('instances.details.cache.hit_ratio')"
+            />
             <p v-text="ratio" />
           </div>
         </div>
-        <div v-if="current.size !== undefined" class="level-item has-text-centered">
+        <div
+          v-if="current.size !== undefined"
+          class="level-item has-text-centered"
+        >
           <div>
-            <p class="heading" v-text="$t('instances.details.cache.size')" />
+            <p
+              class="heading"
+              v-text="$t('instances.details.cache.size')"
+            />
             <p v-text="current.size" />
           </div>
         </div>
       </div>
-      <cache-chart v-if="chartData.length > 0" :data="chartData" />
+      <cache-chart
+        v-if="chartData.length > 0"
+        :data="chartData"
+      />
     </div>
   </sba-panel>
 </template>

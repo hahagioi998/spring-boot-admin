@@ -1,20 +1,17 @@
-import "@/assets/css/base.css";
+import "../src/main/frontend/index.css";
 import "./storybook.css";
 
-import Vue from "vue/dist/vue.js";
+import { app } from '@storybook/vue3';
 import components from "@/components";
 import i18n from "@/i18n";
-import VueI18n from "vue-i18n";
 import mappingsEndpoint from '@/mocks/instance/mappings';
 
 import { initialize, mswDecorator } from 'msw-storybook-addon';
 
-// Initialize MSW
 initialize();
 
-Vue.use(VueI18n);
-Vue.use(components);
-
+app.use(components);
+app.use(i18n);
 
 export const parameters = {
   actions: {argTypesRegex: "^on[A-Z].*"},
@@ -31,15 +28,3 @@ export const parameters = {
     }
   }
 }
-
-export const decorators = [
-  (story, context) => {
-    const wrapped = story(context)
-    return Vue.extend({
-      i18n,
-      components: {wrapped},
-      template: `
-        <wrapped/>`
-    })
-  }, mswDecorator
-]

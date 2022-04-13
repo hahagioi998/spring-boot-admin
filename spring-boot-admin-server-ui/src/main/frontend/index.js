@@ -24,7 +24,7 @@ import sbaShell from './shell/index.vue';
 import Store from './store.js';
 import ViewRegistry from './viewRegistry';
 import views from './views';
-import {createApp, h, markRaw, reactive, ref} from 'vue';
+import {createApp, h, markRaw, reactive} from 'vue';
 import i18n from './i18n';
 import router from './router.js';
 

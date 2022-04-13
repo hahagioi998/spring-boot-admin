@@ -16,10 +16,21 @@
 
 <template>
   <div :class="{ 'is-loading' : isLoading }">
-    <sba-panel v-if="routes" :header-sticks-below="['#navigation']" title="Routes">
-      <refresh-route-cache :instance="instance" @routes-refreshed="fetchRoutes" />
+    <sba-panel
+      v-if="routes"
+      :header-sticks-below="['#navigation']"
+      title="Routes"
+    >
+      <refresh-route-cache
+        :instance="instance"
+        @routes-refreshed="fetchRoutes"
+      />
 
-      <sba-alert v-if="error" :error="error" :title="$t('instances.gateway.route.fetch_failed')" />
+      <sba-alert
+        v-if="error"
+        :error="error"
+        :title="$t('term.fetch_failed')"
+      />
 
       <div class="field">
         <p class="control is-expanded has-icons-left">
@@ -34,10 +45,21 @@
         </p>
       </div>
 
-      <routes-list :instance="instance" :is-loading="isLoading" :routes="routes" @route-deleted="fetchRoutes" />
+      <routes-list
+        :instance="instance"
+        :is-loading="isLoading"
+        :routes="routes"
+        @route-deleted="fetchRoutes"
+      />
     </sba-panel>
-    <sba-panel :header-sticks-below="['#navigation']" title="Add Route">
-      <add-route :instance="instance" @route-added="fetchRoutes" />
+    <sba-panel
+      :header-sticks-below="['#navigation']"
+      title="Add Route"
+    >
+      <add-route
+        :instance="instance"
+        @route-added="fetchRoutes"
+      />
     </sba-panel>
   </div>
 </template>

@@ -15,7 +15,10 @@
   -->
 
 <template>
-  <sba-instance-section :loading="!hasLoaded" :error="error">
+  <sba-instance-section
+    :loading="!hasLoaded"
+    :error="error"
+  >
     <template #before>
       <sba-sticky-subnav>
         <div class="mx-6 flex items-center justify-end gap-1">
@@ -27,30 +30,59 @@
           <div class="flex items-start">
             <div class="flex items-center h-5">
               <input
-                id="wraplines" v-model="wrapLines" name="wraplines" type="checkbox"
+                id="wraplines"
+                v-model="wrapLines"
+                name="wraplines"
+                type="checkbox"
                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
               >
             </div>
             <div class="ml-3 text-sm">
-              <label for="wraplines" class="font-medium text-gray-700" v-text="$t('instances.logfile.wrap_lines')" />
+              <label
+                for="wraplines"
+                class="font-medium text-gray-700"
+                v-text="$t('instances.logfile.wrap_lines')"
+              />
             </div>
           </div>
 
           <div class="mx-3 btn-group">
-            <sba-button :disabled="atTop" @click="scrollToTop">
+            <sba-button
+              :disabled="atTop"
+              @click="scrollToTop"
+            >
               <svg
-                xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
               >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7 11l5-5m0 0l5 5m-5-5v12" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M7 11l5-5m0 0l5 5m-5-5v12"
+                />
               </svg>
             </sba-button>
-            <sba-button :disabled="atBottom" @click="scrollToBottom">
+            <sba-button
+              :disabled="atBottom"
+              @click="scrollToBottom"
+            >
               <svg
-                xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
               >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17 13l-5 5m0 0l-5-5m5 5V6" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M17 13l-5 5m0 0l-5-5m5 5V6"
+                />
               </svg>
             </sba-button>
           </div>
@@ -63,11 +95,12 @@
       </sba-sticky-subnav>
     </template>
 
-    <template>
-      <div :class="{'wrap-lines': wrapLines}" class="log-viewer overflow-x-auto text-sm -mx-6 -my-20 pt-14">
-        <table class="table-striped" />
-      </div>
-    </template>
+    <div
+      :class="{'wrap-lines': wrapLines}"
+      class="log-viewer overflow-x-auto text-sm -mx-6 -my-20 pt-14"
+    >
+      <table class="table-striped" />
+    </div>
   </sba-instance-section>
 </template>
 

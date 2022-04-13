@@ -16,31 +16,52 @@
 
 <template>
   <div>
-    <nav class="relative z-0 btn-group rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+    <nav
+      class="relative z-0 btn-group rounded-md shadow-sm -space-x-px"
+      aria-label="Pagination"
+    >
       <sba-button
-        href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-2 py-2 border text-sm font-medium"
-        @click="$emit('change', current-1)"
+        href="#"
+        class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-2 py-2 border text-sm font-medium"
+        @click="$emit('update:modelValue', modelValue - 1)"
       >
-        <span class="sr-only" v-text="$t('term.go_to_previous_page')" />
-        <font-awesome-icon class="h-5 w-5" :icon="['fas','angle-double-left']" />
+        <span
+          class="sr-only"
+          v-text="$t('term.go_to_previous_page')"
+        />
+        <font-awesome-icon
+          class="h-5 w-5"
+          :icon="['fas','angle-double-left']"
+        />
       </sba-button>
-
       <sba-button
-        v-for="(page, idx) in pageRange" :key="'page_' + idx" href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-        :class="{'bg-indigo-50 border border-indigo-500 z-10': page === current, 'cursor-not-allowed': page === skipPageString}"
+        v-for="(page, idx) in pageRange"
+        :key="'page_' + idx"
+        href="#"
+        class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+        :class="{'bg-indigo-50 border border-indigo-500 z-10': page === modelValue, 'cursor-not-allowed': page === skipPageString}"
         @click="() => changePage(page)"
       >
-        <span class="sr-only" v-text="$t('term.go_to_page_n', {page})" />
+        <span
+          class="sr-only"
+          v-text="$t('term.go_to_page_n', {page})"
+        />
         <span v-text="page" />
       </sba-button>
 
       <sba-button
         href="#"
         class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-2 py-2 border text-sm font-medium"
-        @click="$emit('change', current+1)"
+        @click="$emit('update:modelValue', modelValue+1)"
       >
-        <span class="sr-only" v-text="$t('term.go_to_previous_page')" />
-        <font-awesome-icon class="h-5 w-10" :icon="['fas','angle-double-right']" />
+        <span
+          class="sr-only"
+          v-text="$t('term.go_to_previous_page')"
+        />
+        <font-awesome-icon
+          class="h-5 w-10"
+          :icon="['fas','angle-double-right']"
+        />
       </sba-button>
     </nav>
   </div>
@@ -49,16 +70,13 @@
 <script>
 export default {
   name: 'SbaPaginationNav',
-  model: {
-    prop: 'current',
-    event: 'change'
-  },
   props: {
-    current: {type: Number, default: 1},
+    modelValue: {type: Number, default: 1},
     pageCount: {type: Number, required: true},
     // Define amount of pages shown before and after current page.
     delta: {type: Number, default: 2}
   },
+  emits: ['update:modelValue'],
   data() {
     return {
       skipPageString: '...'
@@ -66,7 +84,7 @@ export default {
   },
   computed: {
     pageRange() {
-      const current = this.current;
+      const current = this.modelValue;
       const delta = this.delta;
       const left = current - delta;
       const right = current + delta + 1;
@@ -98,7 +116,7 @@ export default {
   methods: {
     changePage(page) {
       if (page !== this.skipPageString) {
-        this.$emit('change', page)
+        this.$emit('update:modelValue', page)
       }
     }
   }

@@ -16,10 +16,20 @@
 
 <template>
   <div>
-    <sba-panel v-if="hasLoaded" :title="$t('instances.details.process.title')">
+    <sba-panel
+      v-if="hasLoaded"
+      :title="$t('instances.details.process.title')"
+    >
       <div>
-        <sba-alert v-if="error" :error="error" :title="$t('instances.details.process.fetch_failed')" />
-        <sba-key-value-table class="-mx-4 -my-3" :map="tableData">
+        <sba-alert
+          v-if="error"
+          :error="error"
+          :title="$t('term.fetch_failed')"
+        />
+        <sba-key-value-table
+          class="-mx-4 -my-3"
+          :map="tableData"
+        >
           <template #uptime="value">
             <process-uptime :value="value.value" />
           </template>
@@ -32,7 +42,7 @@
 <script>
 import {take} from 'rxjs/operators';
 import sbaConfig from '@/sba-config'
-import subscribing from '@/mixins/subscribing';
+import subscribing from '@/mixins/subscribing.js';
 import Instance from '@/services/instance.js';
 import {concatMap, delay, retryWhen, timer} from '@/utils/rxjs';
 import {toMillis} from '../metrics/metric.vue';

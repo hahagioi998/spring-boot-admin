@@ -15,11 +15,19 @@
   -->
 
 <template>
-  <sba-instance-section :loading="isLoading" :error="error">
+  <sba-instance-section
+    :loading="isLoading"
+    :error="error"
+  >
     <template #before>
       <sba-sticky-subnav>
         <div class="mx-6">
-          <sba-input v-model="filter" name="filter" type="search" :placeholder="$t('term.filter')">
+          <sba-input
+            v-model="filter"
+            name="filter"
+            type="search"
+            :placeholder="$t('term.filter')"
+          >
             <template #prepend>
               <font-awesome-icon icon="filter" />
             </template>
@@ -31,12 +39,19 @@
       </sba-sticky-subnav>
     </template>
 
-    <template>
-      <template v-for="context in filteredContexts" :key="context.name">
-        <sba-panel :title="context.name" :header-sticks-below="['#navigation']">
-          <beans-list :key="`${context.name}-beans`" :beans="context.beans" />
-        </sba-panel>
-      </template>
+    <template
+      v-for="context in filteredContexts"
+      :key="context.name"
+    >
+      <sba-panel
+        :title="context.name"
+        :header-sticks-below="['#navigation']"
+      >
+        <beans-list
+          :key="`${context.name}-beans`"
+          :beans="context.beans"
+        />
+      </sba-panel>
     </template>
   </sba-instance-section>
 </template>

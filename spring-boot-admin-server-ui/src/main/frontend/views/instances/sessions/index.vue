@@ -20,23 +20,38 @@
       <div class="control">
         <span class="select">
           <select v-model="filter.type">
-            <option value="username" v-text="$t('term.username')" />
-            <option value="sessionId" v-text="$t('instances.sessions.session_id')" />
+            <option
+              value="username"
+              v-text="$t('term.username')"
+            />
+            <option
+              value="sessionId"
+              v-text="$t('instances.sessions.session_id')"
+            />
           </select>
         </span>
       </div>
       <div class="control is-expanded">
         <input
-          v-model="filter.value" class="input" type="text"
-          @paste="handlePaste" @keyup.enter="fetchSessionsByUsername()"
+          v-model="filter.value"
+          class="input"
+          type="text"
+          @paste="handlePaste"
+          @keyup.enter="fetchSessionsByUsername()"
         >
       </div>
     </div>
 
-    <sba-alert v-if="error" :error="error" :title="$t('instances.sessions.fetch_failed')" />
+    <sba-alert
+      v-if="error"
+      :error="error"
+      :title="$t('term.fetch_failed')"
+    />
 
     <sba-sessions-list
-      :instance="instance" :is-loading="isLoading" :sessions="sessions"
+      :instance="instance"
+      :is-loading="isLoading"
+      :sessions="sessions"
       @deleted="fetch"
     />
   </section>

@@ -24,10 +24,16 @@
         <span v-html="$t('applications.shutdown', {name: application.name})" />
       </template>
       <template #footer>
-        <button class="button is-success" @click="shutdownApplication(application)">
+        <button
+          class="button is-success"
+          @click="shutdownApplication(application)"
+        >
           OK
         </button>
-        <button class="button" @click="closeModal">
+        <button
+          class="button"
+          @click="closeModal"
+        >
           Cancel
         </button>
       </template>
@@ -41,10 +47,16 @@
         <span v-html="$t('applications.restart', {name: application.name})" />
       </template>
       <template #footer>
-        <button class="button is-success" @click="restartApplication(application)">
+        <button
+          class="button is-success"
+          @click="restartApplication(application)"
+        >
           OK
         </button>
-        <button class="button" @click="closeModal">
+        <button
+          class="button"
+          @click="closeModal"
+        >
           Cancel
         </button>
       </template>
@@ -58,17 +70,37 @@
         <span v-html="$t('applications.restarted', {name: application.name})" />
       </template>
       <template #footer>
-        <button class="button is-success" @click="closeModal">
+        <button
+          class="button is-success"
+          @click="closeModal"
+        >
           OK
         </button>
       </template>
     </sba-modal>
 
-    <div class="application-list-item card bg-white px-6 py-3" :class="{'is-active': isExpanded}">
-      <header class="hero application-list-item__header" :class="headerClass" v-on="$attrs">
-        <application-summary v-if="!isExpanded" :application="application" />
-        <h1 v-else class="title is-size-5" v-text="application.name" />
-        <div class="application-list-item__header__actions" @click.stop="">
+    <div
+      class="application-list-item card bg-white px-6 py-3"
+      :class="{'is-active': isExpanded}"
+    >
+      <header
+        class="hero application-list-item__header"
+        :class="headerClass"
+        v-on="$attrs"
+      >
+        <application-summary
+          v-if="!isExpanded"
+          :application="application"
+        />
+        <h1
+          v-else
+          class="title is-size-5"
+          v-text="application.name"
+        />
+        <div
+          class="application-list-item__header__actions"
+          @click.stop=""
+        >
           <router-link
             class="button icon-button"
             title="journal"
@@ -103,7 +135,10 @@
         </div>
       </header>
 
-      <div v-if="isExpanded" class="card-content">
+      <div
+        v-if="isExpanded"
+        class="card-content"
+      >
         <sba-modal v-model="isModalShutdownInstanceOpen">
           <template #header>
             <span>shutdown endpoint</span>
@@ -112,10 +147,16 @@
             <span v-html="$t('instances.shutdown', {name: currentModalInstance.id})" />
           </template>
           <template #footer>
-            <button class="button is-success" @click="shutdownInstance">
+            <button
+              class="button is-success"
+              @click="shutdownInstance"
+            >
               OK
             </button>
-            <button class="button" @click="closeModal">
+            <button
+              class="button"
+              @click="closeModal"
+            >
               Cancel
             </button>
           </template>
@@ -129,10 +170,16 @@
             <span v-html="$t('instances.restart', {name: currentModalInstance.id})" />
           </template>
           <template #footer>
-            <button class="button is-success" @click="restartInstance">
+            <button
+              class="button is-success"
+              @click="restartInstance"
+            >
               OK
             </button>
-            <button class="button" @click="closeModal">
+            <button
+              class="button"
+              @click="closeModal"
+            >
               Cancel
             </button>
           </template>
@@ -146,7 +193,10 @@
             <span v-html="$t('instances.restarted')" />
           </template>
           <template #footer>
-            <button class="button is-success" @click="closeModal">
+            <button
+              class="button is-success"
+              @click="closeModal"
+            >
               OK
             </button>
           </template>
@@ -188,7 +238,7 @@
 import Application from '@/services/application.js';
 import ApplicationSummary from './application-summary.vue';
 import InstancesList from './instances-list.vue';
-import {HealthStatus} from '@/healthStatus';
+import {HealthStatus} from '../../HealthStatus.js';
 
 export default {
   components: {ApplicationSummary, InstancesList},

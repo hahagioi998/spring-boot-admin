@@ -1,12 +1,22 @@
 <template>
-  <sba-action-button-scoped :instance-count="instanceCount" :action-fn="refreshContext">
+  <sba-action-button-scoped
+    :instance-count="instanceCount"
+    :action-fn="refreshContext"
+    :show-info="false"
+  >
     <template #default="slotProps">
-      <span v-if="slotProps.refreshStatus === 'completed'" v-text="$t('instances.env.context_refreshed')" />
+      <span
+        v-if="slotProps.refreshStatus === 'completed'"
+        v-text="$t('instances.env.context_refreshed')"
+      />
       <span
         v-else-if="slotProps.refreshStatus === 'failed'"
         v-text="$t('instances.env.context_refresh_failed')"
       />
-      <span v-else v-text="$t('instances.env.context_refresh')" />
+      <span
+        v-else
+        v-text="$t('instances.env.context_refresh')"
+      />
     </template>
   </sba-action-button-scoped>
 </template>

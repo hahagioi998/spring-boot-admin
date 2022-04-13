@@ -21,11 +21,11 @@ export default {
   title: 'SBA Components/Button',
 };
 
-const Template = (args, {argTypes}) => {
+const Template = (args) => {
   return {
     components: {SbaButton},
-    props: Object.keys(argTypes),
-    template: `<sba-button v-bind="$props">${args.label}</sba-button>`,
+    setup() { return { args }; },
+    template: `<sba-button v-bind="args">${args.label}</sba-button>`,
   }
 };
 

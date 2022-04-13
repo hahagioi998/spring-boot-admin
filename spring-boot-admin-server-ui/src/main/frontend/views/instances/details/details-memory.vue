@@ -15,30 +15,61 @@
   -->
 
 <template>
-  <sba-panel v-if="hasLoaded" :title="$t('instances.details.memory.title') + `: ${name}`">
+  <sba-panel
+    v-if="hasLoaded"
+    :title="$t('instances.details.memory.title') + `: ${name}`"
+  >
     <div>
-      <sba-alert v-if="error" :error="error" :title="$t('instances.details.memory.fetch_failed')" />
+      <sba-alert
+        v-if="error"
+        :error="error"
+        :title="$t('term.fetch_failed')"
+      />
 
-      <div v-if="current" class="flex w-full">
-        <div v-if="current.metaspace" class="flex-1 text-center">
-          <p class="font-bold" v-text="$t('instances.details.memory.metaspace')" />
+      <div
+        v-if="current"
+        class="flex w-full"
+      >
+        <div
+          v-if="current.metaspace"
+          class="flex-1 text-center"
+        >
+          <p
+            class="font-bold"
+            v-text="$t('instances.details.memory.metaspace')"
+          />
           <p v-text="prettyBytes(current.metaspace)" />
         </div>
         <div class="flex-1 text-center">
-          <p class="font-bold" v-text="$t('instances.details.memory.used')" />
+          <p
+            class="font-bold"
+            v-text="$t('instances.details.memory.used')"
+          />
           <p v-text="prettyBytes(current.used)" />
         </div>
         <div class="flex-1 text-center">
-          <p class="font-bold" v-text="$t('instances.details.memory.size')" />
+          <p
+            class="font-bold"
+            v-text="$t('instances.details.memory.size')"
+          />
           <p v-text="prettyBytes(current.committed)" />
         </div>
-        <div v-if="current.max >= 0" class="flex-1 text-center">
-          <p class="font-bold" v-text="$t('instances.details.memory.max')" />
+        <div
+          v-if="current.max >= 0"
+          class="flex-1 text-center"
+        >
+          <p
+            class="font-bold"
+            v-text="$t('instances.details.memory.max')"
+          />
           <p v-text="prettyBytes(current.max)" />
         </div>
       </div>
 
-      <mem-chart v-if="chartData.length > 0" :data="chartData" />
+      <mem-chart
+        v-if="chartData.length > 0"
+        :data="chartData"
+      />
     </div>
   </sba-panel>
 </template>
@@ -47,8 +78,8 @@
 import prettyBytes from 'pretty-bytes';
 import {take} from 'rxjs/operators';
 import sbaConfig from '@/sba-config'
-import subscribing from '@/mixins/subscribing';
-import Instance from '@/services/instance.js';
+import subscribing from '../../../mixins/subscribing';
+import Instance from '../../../services/instance.js';
 import {concatMap, delay, retryWhen, timer} from '@/utils/rxjs';
 import moment from 'moment';
 import memChart from './mem-chart.vue';

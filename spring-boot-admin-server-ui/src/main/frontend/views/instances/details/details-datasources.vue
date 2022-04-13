@@ -17,15 +17,17 @@
 <template>
   <div>
     <details-datasource
-      v-for="dataSource in dataSources" :key="dataSource"
-      :instance="instance" :data-source="dataSource"
+      v-for="dataSource in dataSources"
+      :key="dataSource"
+      :instance="instance"
+      :data-source="dataSource"
     />
   </div>
 </template>
 
 <script>
   import sbaConfig from '@/sba-config';
-  import subscribing from '@/mixins/subscribing';
+  import subscribing from '../../../mixins/subscribing.js';
   import Instance from '@/services/instance.js';
   import {concatMap, delay, retryWhen, timer} from '@/utils/rxjs';
   import detailsDatasource from './details-datasource.vue';

@@ -21,11 +21,11 @@ export default {
   title: 'SBA Components/Confirm Button',
 };
 
-const Template = (args, {argTypes}) => {
+const Template = (args) => {
   return {
     components: {SbaConfirmButton},
-    props: Object.keys(argTypes),
-    template: `<sba-confirm-button v-bind="$props">${args.label}</sba-confirm-button>`,
+    setup() { return { args }; },
+    template: `<sba-confirm-button v-bind="args">${args.label}</sba-confirm-button>`,
   }
 };
 

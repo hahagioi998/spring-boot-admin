@@ -23,17 +23,41 @@
     >
       <h3 class="text-lg leading-6 font-medium text-gray-900">
         <span v-text="title" />&nbsp;
-        <span v-if="subtitle" class="text-sm text-gray-500" v-text="subtitle" />
-        <slot v-if="'title' in $slots" name="title" />
+        <span
+          v-if="subtitle"
+          class="text-sm text-gray-500"
+          v-text="subtitle"
+        />
+        <slot
+          v-if="'title' in $slots"
+          name="title"
+        />
       </h3>
 
       <div>
-        <slot v-if="'actions' in $slots" name="actions" />
-        <sba-icon-button v-if="closeable" :icon="['far', 'times-circle']" @click.stop="$emit('close', $event)" />
+        <slot
+          v-if="'actions' in $slots"
+          name="actions"
+        />
+        <sba-icon-button
+          v-if="closeable"
+          :icon="['far', 'times-circle']"
+          @click.stop="$emit('close', $event)"
+        />
       </div>
     </header>
-    <div v-if="'default' in $slots" class="border-t border-gray-200 px-4 py-3" :class="{'bg-white': !!title}">
-      <slot />
+    <div
+      v-if="'default' in $slots"
+      class="border-t border-gray-200 px-4 py-3"
+      :class="{'bg-white': !!title}"
+    >
+      <sba-loading-spinner
+        v-if="loading"
+        size="sm"
+        class=""
+        :loading="loading"
+      />
+      <slot v-if="!loading" />
     </div>
     <footer v-if="'footer' in $slots">
       <div class="px-4 py-3 border-t bg-gray-50">
@@ -46,9 +70,10 @@
 <script>
   import sticksBelow from '@/directives/sticks-below';
   import SbaIconButton from './sba-icon-button.vue';
+  import SbaLoadingSpinner from "./sba-loading-spinner.vue";
 
   export default {
-    components: {SbaIconButton},
+    components: {SbaLoadingSpinner, SbaIconButton},
     directives: {sticksBelow},
     props: {
       title: {
@@ -66,6 +91,10 @@
       headerSticksBelow: {
         type: Array,
         default: undefined
+      },
+      loading: {
+        type: Boolean,
+        default: false
       }
     },
     computed: {

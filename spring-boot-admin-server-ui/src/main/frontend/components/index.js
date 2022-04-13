@@ -15,7 +15,6 @@
  */
 const components = [];
 
-//const context = require.context(__dirname, false, /^(?:(?!.*\.(spec|stories)\.(js|vue)$).)*\.(js|vue)$/);
 const context = import.meta.globEager('./!(*stories|*spec).(vue|js)');
 Object.keys(context).forEach(function (key) {
   const name = /^(.\/)+(.*)\.(vue|js)$/.exec(key)[2];

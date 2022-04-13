@@ -35,12 +35,12 @@
 
       <input
         :id="id"
-        :value="value"
+        :value="modelValue"
         :type="type"
         :placeholder="placeholder"
         class="focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 p-2 relative flex-1 block w-full rounded-none sm:text-sm border-gray-300"
         :class="inputFieldClassNames"
-        @input="$event => $emit('input', $event.target.value)"
+        @input="$event => $emit('update:modelValue', $event.target.value)"
       >
       <span
         v-if="$slots.append"
@@ -61,10 +61,6 @@
 <script>
 export default {
   name: 'SbaInput',
-  model: {
-    prop: 'value',
-    event: 'input'
-  },
   props: {
     label: {
       type: String,
@@ -82,7 +78,7 @@ export default {
       type: String,
       default: 'text'
     },
-    value: {
+    modelValue: {
       type: String,
       default: null
     }

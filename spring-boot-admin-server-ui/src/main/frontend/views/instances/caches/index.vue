@@ -19,10 +19,20 @@
     <template #before>
       <sba-sticky-subnav>
         <div class="mx-6 flex gap-2">
-          <sba-action-button-scoped :instance-count="2" :action-fn="clearCaches" :show-info="false">
+          <sba-action-button-scoped
+            :instance-count="2"
+            :action-fn="clearCaches"
+            :show-info="false"
+          >
             <template #default="slotProps">
-              <span v-if="slotProps.refreshStatus === 'completed'" v-text="$t('term.execution_successful')" />
-              <span v-else-if="slotProps.refreshStatus === 'failed'" v-text="$t('term.execution_failed')" />
+              <span
+                v-if="slotProps.refreshStatus === 'completed'"
+                v-text="$t('term.execution_successful')"
+              />
+              <span
+                v-else-if="slotProps.refreshStatus === 'failed'"
+                v-text="$t('term.execution_failed')"
+              />
               <span v-else>
                 <font-awesome-icon icon="trash" />&nbsp;
                 <span v-text="$t('term.clear')" />
@@ -31,7 +41,12 @@
           </sba-action-button-scoped>
 
           <div class="flex-1">
-            <sba-input v-model="filter" name="filter" type="search" :placeholder="$t('term.filter')">
+            <sba-input
+              v-model="filter"
+              name="filter"
+              type="search"
+              :placeholder="$t('term.filter')"
+            >
               <template #prepend>
                 <font-awesome-icon icon="filter" />
               </template>
@@ -49,7 +64,12 @@
     </template>
 
     <sba-panel>
-      <caches-list :instance="instance" :caches="filteredCaches" :is-loading="isLoading" :application="application" />
+      <caches-list
+        :instance="instance"
+        :caches="filteredCaches"
+        :is-loading="isLoading"
+        :application="application"
+      />
     </sba-panel>
   </sba-instance-section>
 </template>

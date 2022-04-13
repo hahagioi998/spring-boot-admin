@@ -15,7 +15,10 @@
   -->
 
 <template>
-  <sba-panel :title="$t('instances.details.health.title')">
+  <sba-panel
+    :title="$t('instances.details.health.title')"
+    :loading="loading"
+  >
     <template #actions>
       <router-link
         :to="{ name: 'journal', query: { 'instanceId' : instance.id } }"
@@ -25,12 +28,24 @@
       </router-link>
     </template>
 
-    <div>
-      <sba-alert v-if="error" :error="error" :title="$t('instances.details.health.fetch_failed')" severity="WARN" />
-      <div class="-mx-4 -my-3">
-        <health-details :health="health" name="Instance" />
+    <template #default>
+      <sba-alert
+        v-if="error"
+        :error="error"
+        class="border-l-4"
+        :title="$t('term.fetch_failed')"
+        severity="WARN"
+      />
+      <div
+        v-else
+        class="-mx-4 -my-3"
+      >
+        <health-details
+          :health="health"
+          name="Instance"
+        />
       </div>
-    </div>
+    </template>
   </sba-panel>
 </template>
 
@@ -48,6 +63,7 @@ export default {
   },
   data: () => ({
     error: null,
+    loading: false,
     liveHealth: null,
   }),
   computed: {
@@ -61,12 +77,15 @@ export default {
   methods: {
     async fetchHealth() {
       this.error = null;
+      this.loading = true;
       try {
         const res = await this.instance.fetchHealth();
         this.liveHealth = res.data;
       } catch (error) {
         console.warn('Fetching live health failed:', error);
         this.error = error;
+      } finally {
+        this.loading = false;
       }
     }
   }

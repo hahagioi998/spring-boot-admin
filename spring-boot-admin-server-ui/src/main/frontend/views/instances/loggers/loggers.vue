@@ -15,7 +15,10 @@
   -->
 
 <template>
-  <sba-instance-section :loading="!hasLoaded " :error="error">
+  <sba-instance-section
+    :loading="!hasLoaded "
+    :error="error"
+  >
     <template #before>
       <sba-sticky-subnav>
         <div class="mx-6 flex gap-2">
@@ -28,7 +31,12 @@
           />
 
           <div class="flex-1">
-            <sba-input v-model="filter.name" name="filter" type="search" :placeholder="$t('term.filter')">
+            <sba-input
+              v-model="filter.name"
+              name="filter"
+              type="search"
+              :placeholder="$t('term.filter')"
+            >
               <template #prepend>
                 <font-awesome-icon icon="filter" />
               </template>
@@ -43,24 +51,38 @@
             <div class="flex items-start">
               <div class="flex items-center h-5">
                 <input
-                  id="classOnly" v-model="filter.classOnly" name="wraplines" type="checkbox"
+                  id="classOnly"
+                  v-model="filter.classOnly"
+                  name="wraplines"
+                  type="checkbox"
                   class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                 >
               </div>
               <div class="ml-3 text-sm">
-                <label for="classOnly" class="font-medium text-gray-700" v-text="$t('instances.loggers.filter.class_only')" />
+                <label
+                  for="classOnly"
+                  class="font-medium text-gray-700"
+                  v-text="$t('instances.loggers.filter.class_only')"
+                />
               </div>
             </div>
 
             <div class="flex items-start">
               <div class="flex items-center h-5">
                 <input
-                  id="configuredOnly" v-model="filter.configuredOnly" name="wraplines" type="checkbox"
+                  id="configuredOnly"
+                  v-model="filter.configuredOnly"
+                  name="wraplines"
+                  type="checkbox"
                   class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                 >
               </div>
               <div class="ml-3 text-sm">
-                <label for="configuredOnly" class="font-medium text-gray-700" v-text="$t('instances.loggers.filter.configured')" />
+                <label
+                  for="configuredOnly"
+                  class="font-medium text-gray-700"
+                  v-text="$t('instances.loggers.filter.configured')"
+                />
               </div>
             </div>
           </div>
@@ -70,9 +92,15 @@
     </template>
 
     <sba-panel>
-      <div v-if="failedInstances > 0" class="message is-warning">
+      <div
+        v-if="failedInstances > 0"
+        class="message is-warning"
+      >
         <div class="message-body">
-          <font-awesome-icon class="has-text-warning" icon="exclamation-triangle" />
+          <font-awesome-icon
+            class="has-text-warning"
+            icon="exclamation-triangle"
+          />
           <span
             v-text="$t('instances.loggers.fetch_failed_some_instances', {failed: failedInstances, count: instanceCount})"
           />

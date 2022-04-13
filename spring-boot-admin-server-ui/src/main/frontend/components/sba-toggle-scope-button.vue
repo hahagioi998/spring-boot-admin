@@ -17,7 +17,7 @@
 <template>
   <div>
     <sba-button
-      v-if="scope === 'application'"
+      v-if="modelValue === APPLICATION"
       class="w-full"
       size="sm"
       :class="classNames"
@@ -39,33 +39,47 @@
       <span v-text="$t('term.instance')" />
     </sba-button>
 
-    <p v-if="showInfo" class="text-center text-xs pt-1 truncate">
+    <p
+      v-if="showInfo"
+      class="text-center text-xs pt-1 truncate"
+    >
       <span
-        v-if="scope === 'application'"
+        v-if="modelValue === APPLICATION"
         v-text="$t('term.affects_all_instances', {count: instanceCount})"
       />
-      <span v-else v-text="$t('term.affects_this_instance_only')" />
+      <span
+        v-else
+        v-text="$t('term.affects_this_instance_only')"
+      />
     </p>
   </div>
 </template>
 
 <script>
 import SbaButton from './sba-button.vue';
+import {ActionScope} from "./ActionScope.js";
+
+/**
+ * The only true button.
+ * @example ../../../docs/Button.md
+ * @example ../../../docs/ButtonConclusion.md
+ * @displayName Best Button
+ */
 export default {
+  name: "SbaToggleScopeButton",
   components: {SbaButton},
-  model: {
-    prop: 'scope',
-    event: 'changeScope'
-  },
   props: {
-    scope: {
-      type: String,
-      required: true
-    },
+    /**
+     * A test for default function Object
+     */
+    modelValue: String,
     instanceCount: {
       type: Number,
       required: true
     },
+    /**
+     * A test for default function Object
+     */
     showInfo: {
       type: Boolean,
       default: true
@@ -73,6 +87,8 @@ export default {
   },
   data() {
     return {
+      APPLICATION: ActionScope.APPLICATION,
+      INSTANCE: ActionScope.INSTANCE,
       classNames: []
     };
   },
@@ -81,7 +97,7 @@ export default {
   },
   methods: {
     toggleScope(newScope) {
-      this.$emit('changeScope', newScope)
+      this.$emit('update:modelValue', newScope)
     }
   }
 }

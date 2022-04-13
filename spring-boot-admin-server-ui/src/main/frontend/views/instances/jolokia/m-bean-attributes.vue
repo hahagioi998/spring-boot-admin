@@ -16,15 +16,28 @@
 
 <template>
   <div>
-    <div v-if="application.instances.length > 1" class="field is-grouped control">
-      <sba-toggle-scope-button v-model="scope" :instance-count="application.instances.length" />
+    <div
+      v-if="application.instances.length > 1"
+      class="field is-grouped control"
+    >
+      <sba-toggle-scope-button
+        v-model="scope"
+        :instance-count="application.instances.length"
+      />
     </div>
 
-    <sba-alert v-if="error" :error="error" :title="$t('instances.jolokia.mbean.fetch_failed')" />
+    <sba-alert
+      v-if="error"
+      :error="error"
+      :title="$t('term.fetch_failed')"
+    />
 
     <m-bean-attribute
-      v-for="(attribute, name) in mBean.attr" :key="`attr-${name}`"
-      :descriptor="attribute" :name="name" :on-save-value="value => writeAttribute(name, value)"
+      v-for="(attribute, name) in mBean.attr"
+      :key="`attr-${name}`"
+      :descriptor="attribute"
+      :name="name"
+      :on-save-value="value => writeAttribute(name, value)"
       :value="attributeValues && attributeValues[name]"
     />
   </div>

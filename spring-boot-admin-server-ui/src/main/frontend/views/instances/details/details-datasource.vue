@@ -15,11 +15,21 @@
   -->
 
 <template>
-  <sba-panel v-if="hasLoaded" :title="$t('instances.details.datasource.title', {dataSource: dataSource})">
+  <sba-panel
+    v-if="hasLoaded"
+    :title="$t('instances.details.datasource.title', {dataSource: dataSource})"
+  >
     <div>
-      <sba-alert v-if="error" :error="error" :title="$t('instances.details.datasource.fetch_failed')" />
+      <sba-alert
+        v-if="error"
+        :error="error"
+        :title="$t('term.fetch_failed')"
+      />
 
-      <div v-if="current" class="level datasource-current">
+      <div
+        v-if="current"
+        class="level datasource-current"
+      >
         <div class="level-item has-text-centered">
           <div>
             <p
@@ -31,26 +41,41 @@
         </div>
         <div class="level-item has-text-centered">
           <div>
-            <p class="heading" v-text="$t('instances.details.datasource.min_connections')" />
+            <p
+              class="heading"
+              v-text="$t('instances.details.datasource.min_connections')"
+            />
             <p v-text="current.min" />
           </div>
         </div>
         <div class="level-item has-text-centered">
           <div>
-            <p class="heading" v-text="$t('instances.details.datasource.max_connections')" />
-            <p v-if="current.max >= 0" v-text="current.max" />
-            <p v-else v-text="$t('instances.details.datasource.unlimited')" />
+            <p
+              class="heading"
+              v-text="$t('instances.details.datasource.max_connections')"
+            />
+            <p
+              v-if="current.max >= 0"
+              v-text="current.max"
+            />
+            <p
+              v-else
+              v-text="$t('instances.details.datasource.unlimited')"
+            />
           </div>
         </div>
       </div>
-      <datasource-chart v-if="chartData.length > 0" :data="chartData" />
+      <datasource-chart
+        v-if="chartData.length > 0"
+        :data="chartData"
+      />
     </div>
   </sba-panel>
 </template>
 
 <script>
 import sbaConfig from '@/sba-config';
-import subscribing from '@/mixins/subscribing';
+import subscribing from '../../../mixins/subscribing.js';
 import Instance from '@/services/instance.js';
 import {concatMap, delay, retryWhen, timer} from '@/utils/rxjs';
 import moment from 'moment';

@@ -15,11 +15,19 @@
   -->
 
 <template>
-  <sba-instance-section :loading="!hasLoaded" :error="error">
+  <sba-instance-section
+    :loading="!hasLoaded"
+    :error="error"
+  >
     <template #before>
       <sba-sticky-subnav>
         <div class="mx-6">
-          <sba-input v-model="filter" name="filter" type="search" :placeholder="$t('term.filter')">
+          <sba-input
+            v-model="filter"
+            name="filter"
+            type="search"
+            :placeholder="$t('term.filter')"
+          >
             <template #prepend>
               <font-awesome-icon icon="filter" />
             </template>
@@ -39,9 +47,19 @@
           v-if="Object.keys(bean.properties).length > 0"
           class="table-auto w-full"
         >
-          <tr v-for="(value, name, idx) in bean.properties" :key="`${bean.name}-${name}`" :class="{'bg-gray-50': idx%2===0}">
-            <td class="w-1/2 px-4 py-3" v-text="name" />
-            <td class="px-4 py-3" v-text="value" />
+          <tr
+            v-for="(value, name, idx) in bean.properties"
+            :key="`${bean.name}-${name}`"
+            :class="{'bg-gray-50': idx%2===0}"
+          >
+            <td
+              class="w-1/2 px-4 py-3"
+              v-text="name"
+            />
+            <td
+              class="px-4 py-3"
+              v-text="value"
+            />
           </tr>
         </table>
       </div>

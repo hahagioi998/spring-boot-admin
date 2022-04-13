@@ -15,26 +15,48 @@
   -->
 
 <template>
-  <sba-panel v-if="hasLoaded" :title="$t('instances.details.threads.title')">
+  <sba-panel
+    v-if="hasLoaded"
+    :title="$t('instances.details.threads.title')"
+  >
     <div>
-      <sba-alert v-if="error" :error="error" :title="$t('instances.details.threads.fetch_failed')" />
+      <sba-alert
+        v-if="error"
+        :error="error"
+        :title="$t('term.fetch_failed')"
+      />
 
-      <div v-if="current" class="flex w-full">
+      <div
+        v-if="current"
+        class="flex w-full"
+      >
         <div class="flex-1 text-center">
-          <p class="font-bold" v-text="$t('instances.details.threads.live')" />
+          <p
+            class="font-bold"
+            v-text="$t('instances.details.threads.live')"
+          />
           <p v-text="current.live" />
         </div>
         <div class="flex-1 text-center">
-          <p class="font-bold" v-text="$t('instances.details.threads.daemon')" />
+          <p
+            class="font-bold"
+            v-text="$t('instances.details.threads.daemon')"
+          />
           <p v-text="current.daemon" />
         </div>
         <div class="flex-1 text-center">
-          <p class="font-bold" v-text="$t('instances.details.threads.peak_live')" />
+          <p
+            class="font-bold"
+            v-text="$t('instances.details.threads.peak_live')"
+          />
           <p v-text="current.peak" />
         </div>
       </div>
 
-      <threads-chart v-if="chartData.length > 0" :data="chartData" />
+      <threads-chart
+        v-if="chartData.length > 0"
+        :data="chartData"
+      />
     </div>
   </sba-panel>
 </template>

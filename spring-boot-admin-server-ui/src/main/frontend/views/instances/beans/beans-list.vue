@@ -16,7 +16,10 @@
 
 <template>
   <div class="-mx-4 -my-3">
-    <template v-for="(bean, index) in beans" :key="bean.name">
+    <template
+      v-for="(bean, index) in beans"
+      :key="bean.name"
+    >
       <div :class="{'m-1 border rounded shadow-sm': showDetails[bean.name] === true}">
         <div
           :key="bean.name"
@@ -55,8 +58,9 @@
     </template>
   </div>
 </template>
+
 <script>
-import BeansListDetails from '@/views/instances/beans/beans-list-details.vue';
+import BeansListDetails from './beans-list-details.vue';
 
 export default {
   components: {BeansListDetails},
@@ -66,9 +70,11 @@ export default {
       default: () => []
     }
   },
-  data: () => ({
-    showDetails: {}
-  }),
+  data() {
+    return {
+      showDetails: {}
+    }
+  },
   methods: {
     toggle(name) {
       if (this.showDetails[name]) {

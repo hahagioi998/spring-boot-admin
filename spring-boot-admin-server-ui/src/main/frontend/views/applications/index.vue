@@ -16,17 +16,22 @@
 
 <template>
   <section>
-    <sba-wave :wave-classes="['-mt-14']"/>
+    <sba-wave :wave-classes="['-mt-14']" />
 
     <sba-sticky-subnav>
       <div class="container mx-auto flex items-center">
         <div>
-          <applications-stats :applications="applications"/>
+          <applications-stats :applications="applications" />
         </div>
         <div class="flex-1">
-          <sba-input v-model="filter" name="filter" type="search" :placeholder="$t('term.filter')">
+          <sba-input
+            v-model="filter"
+            name="filter"
+            type="search"
+            :placeholder="$t('term.filter')"
+          >
             <template #prepend>
-              <font-awesome-icon icon="filter"/>
+              <font-awesome-icon icon="filter" />
             </template>
           </sba-input>
         </div>
@@ -36,22 +41,27 @@
 
     <div class="container mx-auto py-6">
       <sba-alert
-        v-if="error" :error="error" :title="$t('applications.server_connection_failed')" severity="WARN"
+        v-if="error"
+        :error="error"
+        :title="$t('applications.server_connection_failed')"
+        severity="WARN"
         class-names="mb-6"
       />
       <sba-panel v-if="!applicationsInitialized || (!applicationsInitialized && applications.length === 0)">
         <p
-          v-if="!applicationsInitialized" class="is-muted is-loading"
+          v-if="!applicationsInitialized"
+          class="is-muted is-loading"
           v-text="$t('applications.loading_applications')"
         />
         <p
-          v-if="applicationsInitialized && applications.length === 0" class="is-muted"
+          v-if="applicationsInitialized && applications.length === 0"
+          class="is-muted"
           v-text="$t('applications.no_applications_registered')"
         />
       </sba-panel>
 
       <template v-if="applicationsInitialized">
-        <application-status-hero :applications="applications"/>
+        <application-status-hero :applications="applications" />
 
         <sba-panel
           v-for="group in statusGroups"
@@ -60,7 +70,7 @@
           :title="$tc('term.applications_tc', group.applications.length)"
         >
           <template #title>
-            <sba-status-badge :status="group.statusKey"/>
+            <sba-status-badge :status="group.statusKey" />
           </template>
           <template #default>
             <div class="-mx-4 -my-3">
@@ -98,7 +108,7 @@
 
 <script>
 import Popper from '@/directives/popper';
-import subscribing from '@/mixins/subscribing';
+import subscribing from '../../mixins/subscribing.js';
 import NotificationFilter from '@/services/notification-filter';
 import {anyValueMatches} from '@/utils/collections';
 import {concatMap, mergeWith, Subject, timer} from '@/utils/rxjs';

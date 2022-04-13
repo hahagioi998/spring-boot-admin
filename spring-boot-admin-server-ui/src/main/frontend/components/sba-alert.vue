@@ -15,14 +15,30 @@
   -->
 
 <template>
-  <div v-if="hasError" class="border-t-4 rounded-b px-4 py-3 shadow-md backdrop-filter backdrop-blur-xs bg-opacity-80" :class="classNamesUtil(alertClass, classNames)" role="alert">
+  <div
+    v-if="hasError"
+    class="rounded-b px-4 py-3 shadow-sm backdrop-filter backdrop-blur-xs bg-opacity-80 my-3"
+    :class="classNames(alertClass, borderClassNames)"
+    role="alert"
+  >
     <div class="flex">
       <div class="py-1">
-        <svg class="fill-current h-6 w-6 mr-4" :class="textColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" /></svg>
+        <font-awesome-icon
+          :icon="icon"
+          prefix="fa"
+          size="1x"
+          class="mr-4"
+        />
       </div>
       <div>
-        <p class="font-bold" v-text="title" />
-        <p class="text-sm" v-text="error.message" />
+        <p
+          class="font-bold"
+          v-text="title"
+        />
+        <p
+          class="text-sm"
+          v-text="error.message"
+        />
       </div>
     </div>
   </div>
@@ -52,15 +68,11 @@ export default {
     severity: {
       type: String,
       default: 'ERROR'
-    },
-    classNames: {
-      type: [String, Object, Array],
-      default: ''
     }
   },
   data() {
     return {
-      classNamesUtil: classNames,
+      classNames,
       alertClass: {
         'bg-red-100 border-red-400 text-red-700': this.severity.toUpperCase() === Severity.ERROR,
         'bg-orange-100 border-orange-500 text-orange-700': this.severity.toUpperCase() === Severity.WARN,
@@ -72,12 +84,31 @@ export default {
         'text-orange-700': this.severity.toUpperCase() === Severity.WARN,
         'text-blue-900': this.severity.toUpperCase() === Severity.INFO,
         'text-teal-900': this.severity.toUpperCase() === Severity.SUCCESS,
-      }
+      },
     }
   },
   computed: {
+    borderClassNames() {
+      if (this.$attrs.class?.indexOf('border-') >= 0) {
+        return [];
+      } else {
+        return ['border-t-4'];
+      }
+    },
     hasError() {
       return this.error !== undefined && this.error !== null;
+    },
+    icon() {
+      switch (this.severity.toUpperCase()) {
+        case Severity.ERROR:
+        case Severity.WARN:
+          return ['fa', 'exclamation-circle'];
+        case Severity.SUCCESS:
+          return ['fa', 'check-circle'];
+        case Severity.INFO:
+        default:
+          return ['fa', 'info-circle'];
+      }
     }
   }
 }

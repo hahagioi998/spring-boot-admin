@@ -20,11 +20,8 @@
     :error="error"
   >
     <template #before>
-      <sba-sticky-subnav>
-        <div
-          v-if="env"
-          class="mx-6 flex"
-        >
+      <sba-sticky-subnav v-if="env">
+        <div class="mx-6 flex">
           <div
             v-if="instance.hasEndpoint('refresh')"
             class="mr-1"
@@ -54,7 +51,7 @@
 
     <template #default>
       <div
-        v-if="env && env.activeProfiles.length > 0"
+        v-if="env && env?.activeProfiles.length > 0"
         class="mb-6"
       >
         <span

@@ -21,11 +21,11 @@ export default {
   title: 'SBA Components/Key-Value Table',
 };
 
-const Template = (args, {argTypes}) => {
+const Template = (args) => {
   return {
     components: {SbaKeyValueTable},
-    props: Object.keys(argTypes),
-    template: `<sba-key-value-table v-bind="$props">
+    setup() { return { args }; },
+    template: `<sba-key-value-table v-bind="args">
       <span v-slot:customContent="slotProps">
         {{slotProps}}
       </span>

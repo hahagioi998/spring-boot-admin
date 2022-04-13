@@ -14,25 +14,24 @@
  * limitations under the License.
  */
 
-
-import SbaAlert from './sba-alert.vue';
+import SbaAlert, {Severity} from './sba-alert.vue';
 
 export default {
   component: SbaAlert,
   title: 'SBA Components/Alert',
 };
 
-const Template = (args, {argTypes}) => ({
+const Template = (args) => ({
   components: {SbaAlert},
-  props: Object.keys(argTypes),
-  template: '<sba-alert v-bind="$props" />',
+  setup() { return { args }; },
+  template: '<sba-alert v-bind="args" />',
 });
 
 export const AlertError = Template.bind({});
 AlertError.args = {
   title: 'Server error',
   error: new Error('Error reading from endpoint /applications'),
-  severity: 'ERROR'
+  severity: Severity.ERROR
 };
 
 export const AlertWarning = Template.bind({});

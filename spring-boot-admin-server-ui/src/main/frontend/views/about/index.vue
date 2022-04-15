@@ -31,12 +31,16 @@
       To monitor applications, they must be registered at this server. This is either done by including the
       <a
         :href="`${documentationBaseUrl}/#register-clients-via-spring-boot-admin`"
+        target="_blank"
+        rel="noreferrer"
       >
         Spring Boot Admin Client
       </a>
       or using a
       <a
         :href="`${documentationBaseUrl}/#discover-clients-via-spring-cloud-discovery`"
+        target="_blank"
+        rel="noreferrer"
       >
         Spring Cloud Discovery Client
       </a> implementation.
@@ -46,12 +50,16 @@
       <a :href="`${documentationBaseUrl}`">
         Reference Guide
       </a>, ask
-      on <a href="https://stackoverflow.com/questions/tagged/spring-boot-admin">
-        Stack Overflow
-      </a> or
-      have a chat on the <a href="https://gitter.im/codecentric/spring-boot-admin">
-        Gitter
-      </a> channel.
+      on <a
+        href="https://stackoverflow.com/questions/tagged/spring-boot-admin"
+        target="_blank"
+        rel="noreferrer"
+      >Stack Overflow</a> or
+      have a chat on the <a
+        href="https://gitter.im/codecentric/spring-boot-admin"
+        target="_blank"
+        rel="noreferrer"
+      >Gitter</a> channel.
     </p>
     <p>
       If you found a bug, want to propose a feature or submit a pull request please use the
@@ -97,10 +105,12 @@
       </a>.
     </p>
     <p>
-      Spring, Spring Boot and Spring Cloud are trademarks of <a href="https://pivotal.io/">
-        Pivotal
-        Software, Inc.
-      </a> in the U.S. and other countries.
+      Spring, Spring Boot and Spring Cloud are trademarks of <a
+        href="https://www.vmware.com/"
+        target="_blank"
+        rel="noreferrer"
+      >VMware, Inc.</a> or its
+      affiliates in the U.S. and other countries.
     </p>
   </div>
 </template>

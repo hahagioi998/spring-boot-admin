@@ -15,6 +15,9 @@ export default ({mode}) => {
   process.env = {...process.env, ...loadEnv(mode, process.cwd())};
 
   return defineConfig({
+    define: {
+      '__PROJECT_VERSION__': JSON.stringify(`${process.env.PROJECT_VERSION || '0.0.0'}`)
+    },
     plugins: [
       vue(),
       viteStaticCopy({

@@ -16,8 +16,14 @@
 
 <template>
   <div class="container prose prose-slate mx-auto pt-10">
-    <h1 class="mb-1" v-text="$t('about.title')" />
-    <h2 v-if="version" v-text="`Version ${version}`" />
+    <h1
+      class="mb-1"
+      v-text="$t('about.title')"
+    />
+    <h2
+      v-if="version"
+      v-text="`Version ${version}`"
+    />
     <p>
       This is an administration UI for Spring Boot applications.
     </p>
@@ -55,16 +61,28 @@
     </p>
     <div class="flex justify-between">
       <sba-button @click="openLink(documentationBaseUrl)">
-        <font-awesome-icon size="lg" icon="book" />&nbsp;Reference Guide
+        <font-awesome-icon
+          size="lg"
+          icon="book"
+        />&nbsp;Reference Guide
       </sba-button>
       <sba-button @click="openLink('https://github.com/codecentric/spring-boot-admin')">
-        <font-awesome-icon size="lg" :icon="['fab', 'github']" />&nbsp;Sources
+        <font-awesome-icon
+          size="lg"
+          :icon="['fab', 'github']"
+        />&nbsp;Sources
       </sba-button>
       <sba-button @click="openLink('https://stackoverflow.com/questions/tagged/spring-boot-admin')">
-        <font-awesome-icon size="lg" :icon="['fab', 'stack-overflow']" />&nbsp;Stack Overflow
+        <font-awesome-icon
+          size="lg"
+          :icon="['fab', 'stack-overflow']"
+        />&nbsp;Stack Overflow
       </sba-button>
       <sba-button @click="openLink('https://gitter.im/codecentric/spring-boot-admin')">
-        <font-awesome-icon size="lg" :icon="['fab', 'gitter']" />&nbsp;Gitter
+        <font-awesome-icon
+          size="lg"
+          :icon="['fab', 'gitter']"
+        />&nbsp;Gitter
       </sba-button>
     </div>
 

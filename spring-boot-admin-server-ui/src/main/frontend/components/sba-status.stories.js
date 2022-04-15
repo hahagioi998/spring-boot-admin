@@ -2,7 +2,7 @@ import SbaStatus from './sba-status.vue';
 
 export default {
   component: SbaStatus,
-  title: 'SBA Components/Status',
+  title: 'Components/Status',
 };
 
 const Template = (args) => ({

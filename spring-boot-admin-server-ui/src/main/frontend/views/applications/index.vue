@@ -18,7 +18,7 @@
   <section>
     <sba-wave :wave-classes="['-mt-14']" />
 
-    <sba-sticky-subnav>
+    <sba-sticky-subnav v-if="applications.length > 0">
       <div class="container mx-auto flex items-center">
         <div>
           <applications-stats :applications="applications" />
@@ -47,21 +47,32 @@
         severity="WARN"
         class-names="mb-6"
       />
-      <sba-panel v-if="!applicationsInitialized || (!applicationsInitialized && applications.length === 0)">
+      <sba-panel v-if="!applicationsInitialized || (applicationsInitialized && applications.length === 0)">
         <p
           v-if="!applicationsInitialized"
           class="is-muted is-loading"
           v-text="$t('applications.loading_applications')"
         />
-        <p
+        <div
           v-if="applicationsInitialized && applications.length === 0"
-          class="is-muted"
-          v-text="$t('applications.no_applications_registered')"
-        />
+          class="flex flex-col items-center"
+        >
+          <font-awesome-icon
+            icon="frown-open"
+            class="text-gray-500 text-9xl pb-4"
+          />
+          <h1
+            class="font-bold text-2xl"
+            v-text="$t('applications.no_applications_registered')"
+          />
+        </div>
       </sba-panel>
 
       <template v-if="applicationsInitialized">
-        <application-status-hero :applications="applications" />
+        <application-status-hero
+          v-if="applications.length > 0"
+          :applications="applications"
+        />
 
         <sba-panel
           v-for="group in statusGroups"

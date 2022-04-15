@@ -79,6 +79,7 @@
         v-for="propertySource in propertySources"
         :key="propertySource.name"
         :title="propertySource.name"
+        :header-sticks-below="'#subnavigation'"
       >
         <div
           v-if="propertySource.properties && Object.keys(propertySource.properties).length > 0"

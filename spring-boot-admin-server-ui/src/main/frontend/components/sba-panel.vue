@@ -15,11 +15,12 @@
   -->
 
 <template>
-  <div class="bg-white shadow overflow-hidden sm:rounded-lg break-inside-avoid mb-6 backdrop-filter backdrop-blur-sm bg-opacity-80 relative">
+  <div class="shadow rounded-lg break-inside-avoid mb-6">
     <header
       v-if="showTitle"
-      class="flex justify-between px-4 py-5 sm:px-6 items-center"
-      :class="{'sticky': headerSticksBelow}"
+      ref="header"
+      v-sticks-below="headerSticksBelow"
+      class="rounded-t-lg flex justify-between px-4 py-5 sm:px-6 items-center border-b bg-white backdrop-filter backdrop-blur-sm bg-opacity-80 transition-all"
     >
       <h3 class="text-lg leading-6 font-medium text-gray-900">
         <span v-text="title" />&nbsp;
@@ -48,8 +49,7 @@
     </header>
     <div
       v-if="'default' in $slots"
-      class="border-t border-gray-200 px-4 py-3"
-      :class="{'bg-white': !!title}"
+      class=" border-gray-200 px-4 py-3 bg-white"
     >
       <sba-loading-spinner
         v-if="loading"
@@ -68,39 +68,71 @@
 </template>
 
 <script>
-  import sticksBelow from '@/directives/sticks-below';
-  import SbaIconButton from './sba-icon-button.vue';
-  import SbaLoadingSpinner from "./sba-loading-spinner.vue";
+import SbaIconButton from './sba-icon-button.vue';
+import SbaLoadingSpinner from "./sba-loading-spinner.vue";
+import sticksBelow from "../directives/sticks-below.js";
+import {throttle} from "lodash-es";
 
-  export default {
-    components: {SbaLoadingSpinner, SbaIconButton},
-    directives: {sticksBelow},
-    props: {
-      title: {
-        type: String,
-        default: undefined
-      },
-      subtitle: {
-        type: String,
-        default: undefined
-      },
-      closeable: {
-        type: Boolean,
-        default: false
-      },
-      headerSticksBelow: {
-        type: Array,
-        default: undefined
-      },
-      loading: {
-        type: Boolean,
-        default: false
-      }
+export default {
+  components: {SbaLoadingSpinner, SbaIconButton},
+  directives: {sticksBelow},
+  props: {
+    title: {
+      type: String,
+      default: undefined
     },
-    computed: {
-      showTitle() {
-        return this.title || 'title' in this.$slots || 'actions' in this.$slots;
+    subtitle: {
+      type: String,
+      default: undefined
+    },
+    closeable: {
+      type: Boolean,
+      default: false
+    },
+    headerSticksBelow: {
+      type: String,
+      default: undefined
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return {
+      headerTopValue: 0,
+      onScrollFn: undefined
+    }
+  },
+  computed: {
+    showTitle() {
+      return this.title || 'title' in this.$slots || 'actions' in this.$slots;
+    }
+  },
+  mounted() {
+    if (this.headerSticksBelow) {
+      const header = this.$refs.header;
+      this.headerTopValue = +header.style.top.substr(0, header.style.top.length - 2)
+
+      this.onScrollFn = throttle(this.onScroll, 150);
+      document.addEventListener('scroll', this.onScrollFn);
+    }
+  },
+  beforeUnmount() {
+    if (this.headerSticksBelow) {
+      document.removeEventListener('scroll', this.onScrollFn);
+    }
+  },
+  methods: {
+    onScroll() {
+      const header = this.$refs.header;
+      const boundingClientRect = header.getBoundingClientRect();
+      if (boundingClientRect.top <= this.headerTopValue) {
+        header.classList.add("!rounded-none", "!py-2")
+      } else {
+        header.classList.remove("!rounded-none", "!py-2")
       }
     }
   }
+}
 </script>

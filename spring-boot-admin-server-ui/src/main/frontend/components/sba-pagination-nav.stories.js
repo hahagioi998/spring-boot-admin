@@ -19,7 +19,7 @@ import SbaPaginationNav from './sba-pagination-nav.vue';
 
 export default {
   component: SbaPaginationNav,
-  title: 'SBA Components/Pagination',
+  title: 'Components/Pagination',
 };
 
 const Template = (args) => {

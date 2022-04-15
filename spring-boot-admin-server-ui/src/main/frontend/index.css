@@ -32,6 +32,10 @@ body {
     height: 100px;
 }
 
+.container {
+    @apply px-2;
+}
+
 th {
     text-align: left;
 }

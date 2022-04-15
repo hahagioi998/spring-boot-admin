@@ -15,12 +15,19 @@
   -->
 
 <template>
-  <nav class="bg-black fixed top-0 w-full h-14 z-50">
+  <nav
+    id="navigation"
+    class="bg-black fixed top-0 w-full h-14 z-50"
+  >
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-14">
         <div class="flex items-center">
           <div class="flex items-center flex-shrink-0 text-white mr-6">
-            <router-link class="brand" to="/" v-html="brand"/>
+            <router-link
+              class="brand"
+              to="/"
+              v-html="brand"
+            />
           </div>
 
           <div class="hidden lg:block">
@@ -35,7 +42,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <component :is="view.handle"/>
+                  <component :is="view.handle" />
                 </a>
                 <router-link
                   v-else
@@ -43,7 +50,11 @@
                   :to="{name: view.name}"
                   class="navbar-item"
                 >
-                  <component :is="view.handle" :applications="applications" :error="error"/>
+                  <component
+                    :is="view.handle"
+                    :applications="applications"
+                    :error="error"
+                  />
                 </router-link>
               </template>
               <!-- LINKS -->
@@ -54,7 +65,8 @@
         <div class="hidden lg:block">
           <div class="ml-4 flex items-center md:ml-6">
             <navbar-item-language-selector
-              v-if="availableLocales.length > 1" :current-locale="$i18n.locale"
+              v-if="availableLocales.length > 1"
+              :current-locale="$i18n.locale"
               :available-locales="availableLocales"
               @localeChanged="changeLocale"
             />
@@ -70,19 +82,40 @@
                   @click.stop="showUserMenu = !showUserMenu"
                 >
                   <span class="sr-only">Open user menu</span>
-                  <font-awesome-icon color="white" class="rounded-full" icon="user-circle" size="2x"/>
+                  <font-awesome-icon
+                    color="white"
+                    class="rounded-full"
+                    icon="user-circle"
+                    size="2x"
+                  />
                 </button>
               </div>
             </div>
 
-            <div v-if="showUserMenu"
-                 class="origin-top-right absolute right-0 mt-26 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-                 role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+            <div
+              v-if="showUserMenu"
+              class="origin-top-right absolute right-0 mt-26 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="user-menu-button"
+              tabindex="-1"
+            >
               <a class="block px-4 py-2 text-sm text-gray-700">
-                <form action="logout" method="post">
-                  <input v-if="csrfToken" type="hidden" :name="csrfParameterName" :value="csrfToken">
-                  <button type="submit" value="logout">
-                    <font-awesome-icon icon="sign-out-alt"/>&nbsp;<span v-text="$t('navbar.logout')"/>
+                <form
+                  action="logout"
+                  method="post"
+                >
+                  <input
+                    v-if="csrfToken"
+                    type="hidden"
+                    :name="csrfParameterName"
+                    :value="csrfToken"
+                  >
+                  <button
+                    type="submit"
+                    value="logout"
+                  >
+                    <font-awesome-icon icon="sign-out-alt" />&nbsp;<span v-text="$t('navbar.logout')" />
                   </button>
                 </form>
               </a>
@@ -101,22 +134,34 @@
           >
             <span class="sr-only">Open main menu</span>
             <svg
-              :class="{'block': !showMenu, 'hidden': showMenu}" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg"
-              fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" aria-hidden="true"
+              :class="{'block': !showMenu, 'hidden': showMenu}"
+              class="h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
             >
               <path
-                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
                 d="M4 6h16M4 12h16M4 18h16"
               />
             </svg>
             <svg
-              :class="{'block': showMenu, 'hidden': !showMenu}" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg"
-              fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" aria-hidden="true"
+              :class="{'block': showMenu, 'hidden': !showMenu}"
+              class="h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
             >
               <path
-                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
@@ -126,7 +171,11 @@
     </div>
 
     <!-- Mobile menu, show/hide based on menu state. -->
-    <div v-if="showMenu" id="mobile-menu" class="lg:hidden bg-black">
+    <div
+      v-if="showMenu"
+      id="mobile-menu"
+      class="lg:hidden bg-black"
+    >
       <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
         <!-- LINKS -->
         <template v-for="view in enabledViews">
@@ -138,7 +187,7 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            <component :is="view.handle"/>
+            <component :is="view.handle" />
           </a>
           <router-link
             v-else
@@ -146,7 +195,11 @@
             :to="{name: view.name}"
             class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            <component :is="view.handle" :applications="applications" :error="error"/>
+            <component
+              :is="view.handle"
+              :applications="applications"
+              :error="error"
+            />
           </router-link>
         </template>
         <!-- LINKS -->
@@ -155,18 +208,37 @@
       <div class="pt-4 pb-3 border-t border-gray-700">
         <div class="flex items-center px-5">
           <div class="flex-shrink-0">
-            <font-awesome-icon color="white" class="h-10 w-10 rounded-full white" icon="user-circle" size="2x"/>
+            <font-awesome-icon
+              color="white"
+              class="h-10 w-10 rounded-full white"
+              icon="user-circle"
+              size="2x"
+            />
           </div>
           <div class="ml-3">
-            <div class="text-base font-medium leading-none text-white" v-text="userName"/>
+            <div
+              class="text-base font-medium leading-none text-white"
+              v-text="userName"
+            />
           </div>
         </div>
         <div class="mt-3 px-2 space-y-1 is-hidden bg-gray-100">
           <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-            <form action="logout" method="post">
-              <input v-if="csrfToken" type="hidden" :name="csrfParameterName" :value="csrfToken">
-              <button type="submit" value="logout">
-                <font-awesome-icon icon="sign-out-alt"/>&nbsp;<span v-text="$t('navbar.logout')"/>
+            <form
+              action="logout"
+              method="post"
+            >
+              <input
+                v-if="csrfToken"
+                type="hidden"
+                :name="csrfParameterName"
+                :value="csrfToken"
+              >
+              <button
+                type="submit"
+                value="logout"
+              >
+                <font-awesome-icon icon="sign-out-alt" />&nbsp;<span v-text="$t('navbar.logout')" />
               </button>
             </form>
           </a>

@@ -4,7 +4,9 @@ const {resolve} = require("path");
 module.exports = {
   "stories": [
     "../src/main/frontend/components/*.stories.mdx",
-    "../src/main/frontend/components/*.stories.@(js|jsx|ts|tsx)"
+    "../src/main/frontend/components/*.stories.@(js|jsx|ts|tsx)",
+    "../src/main/frontend/views/**/*.stories.mdx",
+    "../src/main/frontend/views/**/*.stories.@(js|jsx|ts|tsx)"
   ],
   "addons": [
     "@storybook/addon-links",

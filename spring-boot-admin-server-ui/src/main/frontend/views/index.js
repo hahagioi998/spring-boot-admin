@@ -14,15 +14,24 @@
  * limitations under the License.
  */
 
+const isStorybook = Object.prototype.hasOwnProperty.call(window, 'STORIES');
+
 const views = [];
 
-const context = import.meta.globEager("./**/index.(js|vue)");
-Object.keys(context).forEach(function (key) {
-  const defaultExport = context[key].default;
-  if (defaultExport && defaultExport.install) {
-    views.push(defaultExport)
-  }
-});
+if (!isStorybook) {
+  const context = import.meta.globEager("./**/index.(js|vue)");
+  Object.keys(context)
+    .filter(key => {
+      const contextElement = context[key];
+      return ("default" in contextElement);
+    })
+    .forEach(function (key) {
+      const defaultExport = context[key].default;
+      if (defaultExport && defaultExport.install) {
+        views.push(defaultExport)
+      }
+    });
+}
 
 export const VIEW_GROUP = {
   WEB: 'web',

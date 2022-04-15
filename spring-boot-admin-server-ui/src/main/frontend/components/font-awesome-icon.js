@@ -54,11 +54,12 @@ import {faAngleDoubleLeft} from '@fortawesome/free-solid-svg-icons';
 import {faInfoCircle} from "@fortawesome/free-solid-svg-icons/faInfoCircle.js";
 import {faExclamationCircle} from "@fortawesome/free-solid-svg-icons/faExclamationCircle.js";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons/faCheckCircle.js";
+import {faFrownOpen} from "@fortawesome/free-solid-svg-icons/faFrownOpen.js";
 
 export default FontAwesomeIcon;
 
 library.add(
-//solid
+  //solid
   faAngleDoubleRight,
   faAngleDoubleLeft,
   faBan,
@@ -72,6 +73,7 @@ library.add(
   faExclamation,
   faExclamationTriangle,
   faFilter,
+  faFrownOpen,
   faHeartbeat,
   faHistory,
   faInfoCircle,

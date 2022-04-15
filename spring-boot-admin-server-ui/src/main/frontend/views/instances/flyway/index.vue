@@ -37,7 +37,7 @@
         <sba-panel
           v-for="(report, name) in context.flywayBeans"
           :key="`${ctxName}-${name}`"
-          :header-sticks-below="['#navigation']"
+          :header-sticks-below="'#subnavigation'"
           :title="name"
           class="migration"
         >

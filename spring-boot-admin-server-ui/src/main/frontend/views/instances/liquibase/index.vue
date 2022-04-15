@@ -50,7 +50,7 @@
           <sba-panel
             :title="`name`"
             class="change-set"
-            :header-sticks-below="['#navigation']"
+            :header-sticks-below="'#subnavigation'"
           >
             <table class="table is-hoverable is-fullwidth">
               <thead>

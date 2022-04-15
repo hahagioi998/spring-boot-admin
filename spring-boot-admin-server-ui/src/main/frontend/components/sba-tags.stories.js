@@ -2,7 +2,7 @@ import SbaTags from './sba-tags.vue';
 
 export default {
   component: SbaTags,
-  title: 'SBA Components/Tags',
+  title: 'Components/Tags',
 };
 
 const Template = (args) => ({

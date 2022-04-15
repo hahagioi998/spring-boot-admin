@@ -19,7 +19,7 @@ import i18n from '@/i18n';
 
 export default {
   component: SbaActionButtonScoped,
-  title: 'SBA Components/Action Button Scoped',
+  title: 'Components/Action Button Scoped',
 };
 
 const TemplateWithProps = (args) => ({

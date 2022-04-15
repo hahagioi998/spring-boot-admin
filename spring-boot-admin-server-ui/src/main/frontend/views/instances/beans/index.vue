@@ -45,7 +45,7 @@
     >
       <sba-panel
         :title="context.name"
-        :header-sticks-below="['#navigation']"
+        :header-sticks-below="'#subnavigation'"
       >
         <beans-list
           :key="`${context.name}-beans`"

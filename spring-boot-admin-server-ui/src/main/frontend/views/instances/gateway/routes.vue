@@ -18,7 +18,7 @@
   <div :class="{ 'is-loading' : isLoading }">
     <sba-panel
       v-if="routes"
-      :header-sticks-below="['#navigation']"
+      :header-sticks-below="'#subnavigation'"
       title="Routes"
     >
       <refresh-route-cache
@@ -53,7 +53,6 @@
       />
     </sba-panel>
     <sba-panel
-      :header-sticks-below="['#navigation']"
       title="Add Route"
     >
       <add-route

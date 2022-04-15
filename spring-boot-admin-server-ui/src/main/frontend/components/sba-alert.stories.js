@@ -18,7 +18,7 @@ import SbaAlert, {Severity} from './sba-alert.vue';
 
 export default {
   component: SbaAlert,
-  title: 'SBA Components/Alert',
+  title: 'Components/Alert',
 };
 
 const Template = (args) => ({

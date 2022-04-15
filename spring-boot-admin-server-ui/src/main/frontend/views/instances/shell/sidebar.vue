@@ -26,7 +26,10 @@
           :class="`instance-summary--${instance.statusInfo.status}`"
         >
           <span class="overflow-hidden text-ellipsis">
-            <span class="font-bold" v-text="instance.registration.name" /><br>
+            <span
+              class="font-bold"
+              v-text="instance.registration.name"
+            /><br>
             <small><em v-text="instance.id" /></small>
           </span>
         </router-link>
@@ -47,10 +50,15 @@
           <span v-html="group.icon" />
           <span v-text="hasMultipleViews(group) ? getGroupTitle(group.id) : $t(group.views[0].label)" />
           <svg
-            v-if="hasMultipleViews(group)" aria-hidden="true" focusable="false" data-prefix="fas" class="w-3 h-3 ml-auto"
+            v-if="hasMultipleViews(group)"
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fas"
+            class="w-3 h-3 ml-auto"
             :class="{'-rotate-90': !isActiveGroup(group), '': isActiveGroup(group)}"
             role="img"
-            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
           >
             <path
               fill="currentColor"
@@ -84,14 +92,12 @@
 </template>
 
 <script>
-import sticksBelow from '@/directives/sticks-below';
-import Application from '@/services/application.js';
-import Instance from '@/services/instance.js';
-import {compareBy} from '@/utils/collections';
-import {VIEW_GROUP_ICON} from '@/views';
+import Application from '../../../services/application';
+import Instance from '../../../services/instance';
+import {VIEW_GROUP_ICON} from "../../index.js";
+import {compareBy} from "../../../utils/collections.js";
 
 export default {
-  directives: {sticksBelow},
   props: {
     views: {
       type: Array,

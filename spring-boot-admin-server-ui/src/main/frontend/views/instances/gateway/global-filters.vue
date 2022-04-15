@@ -23,7 +23,7 @@
     />
 
     <sba-panel
-      :header-sticks-below="['#navigation']"
+      :header-sticks-below="'#subnavigation'"
       title="Global Filters"
     >
       <div

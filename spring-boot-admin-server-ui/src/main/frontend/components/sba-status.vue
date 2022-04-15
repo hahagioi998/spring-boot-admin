@@ -17,7 +17,8 @@
 <template>
   <div class="application-status">
     <font-awesome-icon
-      :icon="icon" class="application-status__icon"
+      :icon="icon"
+      class="application-status__icon"
       :class="`application-status__icon--${status}`"
     />
     <small v-if="date">
@@ -64,7 +65,7 @@
   @apply text-center inline-flex flex-col;
 }
 .application-status__icon {
-  @apply text-gray-500 mx-auto mb-1;
+  @apply text-gray-500 mx-auto;
 }
 .application-status__icon--UP {
   color: #48c78e;

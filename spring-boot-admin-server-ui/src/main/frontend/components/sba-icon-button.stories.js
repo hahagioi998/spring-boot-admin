@@ -14,22 +14,26 @@
  * limitations under the License.
  */
 
-import SbaConfirmButton from './sba-confirm-button.vue';
+import SbaIconButton from "./sba-icon-button.vue";
 
 export default {
-  component: SbaConfirmButton,
-  title: 'Components/Confirm Button',
+  component: SbaIconButton,
+  title: 'Components/Icon Button',
 };
 
 const Template = (args) => {
   return {
-    components: {SbaConfirmButton},
-    setup() { return { args }; },
-    template: `<sba-confirm-button v-bind="args">${args.label}</sba-confirm-button>`,
+    components: {SbaIconButton},
+    setup() {
+      return {args};
+    },
+    template: `
+      <sba-icon-button v-bind="args">${args.label}</sba-icon-button>`,
   }
 };
 
 export const DefaultButton = Template.bind({});
 DefaultButton.args = {
-  label: 'Default confirm button',
+  icon: "trash",
+  title: "unregister"
 };

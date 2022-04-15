@@ -16,7 +16,6 @@
 
 <template>
   <sba-panel
-    :header-sticks-below="['#navigation']"
     :title="$t('instances.env.manager')"
   >
     <datalist id="allPropertyNames">

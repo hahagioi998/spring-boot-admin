@@ -19,7 +19,7 @@ import i18n from '@/i18n';
 
 export default {
   component: SbaModal,
-  title: 'SBA Components/Modal',
+  title: 'Components/Modal',
 };
 
 const Template = (args) => ({

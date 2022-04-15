@@ -67,6 +67,14 @@ class Application {
     return this.instances.findIndex(i => i.isUnregisterable) >= 0;
   }
 
+  get hasShutdownEndpoint() {
+    return this.instances.some(i => i.hasEndpoint('shutdown'));
+  }
+
+  get hasRestartEndpoint() {
+    return this.instances.some(i => i.hasEndpoint('restart'));
+  }
+
   async unregister() {
     return this.axios.delete('', {
       headers: {'Accept': 'application/json'}

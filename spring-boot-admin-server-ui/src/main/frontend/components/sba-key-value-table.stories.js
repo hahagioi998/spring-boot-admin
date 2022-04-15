@@ -18,7 +18,7 @@ import SbaKeyValueTable from './sba-key-value-table.vue';
 
 export default {
   component: SbaKeyValueTable,
-  title: 'SBA Components/Key-Value Table',
+  title: 'Components/Key-Value Table',
 };
 
 const Template = (args) => {
@@ -26,12 +26,12 @@ const Template = (args) => {
     components: {SbaKeyValueTable},
     setup() { return { args }; },
     template: `<sba-key-value-table v-bind="args">
-      <span v-slot:customContent="slotProps">
+      <template #customContent="slotProps">
         {{slotProps}}
-      </span>
-      <span v-slot:customId="slotProps">
+      </template>
+      <template #customId="slotProps">
         {{slotProps}}
-      </span>
+      </template>
     </sba-key-value-table>`,
   }
 };

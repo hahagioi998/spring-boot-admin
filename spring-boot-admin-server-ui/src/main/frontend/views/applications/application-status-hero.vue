@@ -1,16 +1,38 @@
 <template>
   <sba-panel>
-    <div class="flex flex-col items-center">
+    <div class="flex flex-row md:flex-col items-center justify-center">
       <template v-if="downCount === 0">
-        <font-awesome-icon icon="check-circle" class="text-green-500 text-9xl pb-4" />
-        <h1 class="font-bold text-2xl" v-text="$t('applications.all_up')" />
+        <font-awesome-icon
+          icon="check-circle"
+          class="text-green-500 text-9xl pr-4 md:pb-4 md:pr-0"
+        />
+        <div>
+          <h1
+            class="font-bold text-2xl"
+            v-text="$t('applications.all_up')"
+          />
+          <p
+            class="text-gray-400"
+            v-text="lastUpdate"
+          />
+        </div>
       </template>
       <template v-else>
-        <font-awesome-icon icon="minus-circle" class="text-red-500 text-9xl pb-4" />
-        <h1 class="font-bold text-2xl" v-text="$t('applications.instances_down')" />
+        <font-awesome-icon
+          icon="minus-circle"
+          class="text-red-500 text-9xl pb-4"
+        />
+        <div>
+          <h1
+            class="font-bold text-2xl"
+            v-text="$t('applications.instances_down')"
+          />
+          <p
+            class="text-gray-400"
+            v-text="lastUpdate"
+          />
+        </div>
       </template>
-
-      <p class="text-gray-400 pt-4" v-text="lastUpdate" />
     </div>
   </sba-panel>
 </template>
@@ -43,6 +65,12 @@ export default {
       return this.applications.reduce((current, next) => {
         return current + (next.instances.filter(instance => instance.statusInfo.status !== 'UP').length);
       }, 0);
+    },
+    applicationsCount() {
+      return this.applications.length;
+    },
+    instancesCount() {
+      return this.applications.reduce((current, next) => current + next.instances.length, 0);
     }
   },
   watch: {

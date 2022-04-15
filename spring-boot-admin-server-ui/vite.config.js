@@ -52,6 +52,7 @@ export default ({mode}) => {
     resolve: {
       alias: {
         '@': root,
+        'vue': 'vue/dist/vue.esm-bundler.js'
       },
     },
   })

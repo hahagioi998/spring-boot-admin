@@ -15,29 +15,61 @@
   -->
 
 <template>
-  <sba-instance-section :error="error" :loading="!hasLoaded">
-    <sba-panel v-if="!isOldMetrics && availableMetrics.length > 0">
+  <sba-instance-section
+    :error="error"
+    :loading="!hasLoaded"
+  >
+    <sba-panel
+      v-if="!isOldMetrics && availableMetrics.length > 0"
+    >
       <form class="grid grid-cols-6 gap-6">
         <div class="col-span-3">
           <div>
-            <label for="metric" class="block text-sm font-medium text-gray-700" v-text="$t('instances.metrics.label')" />
+            <label
+              for="metric"
+              class="block text-sm font-medium text-gray-700"
+              v-text="$t('instances.metrics.label')"
+            />
             <div class="mt-1 relative rounded-md shadow-sm">
-              <select id="metric" v-model="selectedMetric" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                <option v-for="metric in availableMetrics" :key="metric" v-text="metric" />
+              <select
+                id="metric"
+                v-model="selectedMetric"
+                class="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+              >
+                <option
+                  v-for="metric in availableMetrics"
+                  :key="metric"
+                  v-text="metric"
+                />
               </select>
             </div>
           </div>
         </div>
         <div class="col-span-3 space-y-3">
           <template v-if="availableTags">
-            <div v-for="tag in availableTags" :key="tag.tag">
-              <label for="metric2" class="block text-sm font-medium text-gray-700">{{ tag.tag }}</label>
+            <div
+              v-for="tag in availableTags"
+              :key="tag.tag"
+            >
+              <label
+                for="metric2"
+                class="block text-sm font-medium text-gray-700"
+              >{{ tag.tag }}</label>
               <div class="mt-1 relative rounded-md shadow-sm">
-                <select id="metric2" v-model="selectedTags[tag.tag]" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                <select
+                  id="metric2"
+                  v-model="selectedTags[tag.tag]"
+                  class="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                >
                   <option :value="undefined">
                     -
                   </option>
-                  <option v-for="value in tag.values" :key="value" :value="value" v-text="value" />
+                  <option
+                    v-for="value in tag.values"
+                    :key="value"
+                    :value="value"
+                    v-text="value"
+                  />
                 </select>
               </div>
             </div>
@@ -47,14 +79,21 @@
 
       <template #footer>
         <div class="text-right">
-          <sba-button type="primary" @click="handleSubmit">
+          <sba-button
+            type="primary"
+            @click="handleSubmit"
+          >
             {{ $t('instances.metrics.add_metric') }}
           </sba-button>
         </div>
       </template>
     </sba-panel>
 
-    <p v-if="stateFetchingTags === 'executing'" class="is-loading" v-text="$t('instances.metrics.fetching_tags')" />
+    <p
+      v-if="stateFetchingTags === 'executing'"
+      class="is-loading"
+      v-text="$t('instances.metrics.fetching_tags')"
+    />
 
     <metric
       v-for="(metric, index) in metrics"

@@ -2,29 +2,31 @@ import SbaPanel from './sba-panel.vue';
 
 export default {
   component: SbaPanel,
-  title: 'SBA Components/Panel',
+  title: 'Components/Panel',
 };
 
 const Template = (args) => {
   return {
     components: {SbaPanel},
-    setup() { return { args }; },
+    setup() {
+      return {args};
+    },
     methods: {
       onClose(event) {
         alert('Close clicked! ' + JSON.stringify(event))
       }
     },
     template: `
-      <sba-panel @close="onClose" v-bind="args" >
-        <template v-slot:actions v-if="${'actions' in args}">
-          ${args.actions}
-        </template>
-        <template v-slot>
-          ${args.slot}
-        </template>
-        <template v-slot:footer v-if="${'footer' in args}">
-          ${args.footer}
-        </template>
+      <sba-panel @close="onClose" v-bind="args">
+      <template v-slot:actions v-if="${'actions' in args}">
+        ${args.actions}
+      </template>
+      <template v-slot>
+        ${args.slot}
+      </template>
+      <template v-slot:footer v-if="${'footer' in args}">
+        ${args.footer}
+      </template>
       </sba-panel>
     `,
   }
@@ -33,7 +35,8 @@ const Template = (args) => {
 export const WithTitle = Template.bind({});
 WithTitle.args = {
   title: 'Title',
-  slot: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae dolor ac ante ornare pharetra. Proin
+  slot: `<article class="prose max-w-none">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae dolor ac ante ornare pharetra. Proin
             laoreet ex et lacinia hendrerit. Fusce sed justo at nulla pellentesque maximus sed at diam. Suspendisse sem
             lorem,
             lobortis vel orci quis, efficitur porta massa. In vel neque justo. Maecenas dapibus quam ut nisl porta,
@@ -56,7 +59,20 @@ WithTitle.args = {
             placerat
             erat a rutrum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
             Donec
-            semper erat nec ipsum molestie, eu commodo dui lobortis.</p>`
+            semper erat nec ipsum molestie, eu commodo dui lobortis.</p>
+
+          <p>Aenean convallis tempus dolor. Mauris eget ipsum tortor. Mauris congue facilisis eros. Phasellus tortor urna,
+            semper
+            congue nisl maximus, pulvinar luctus justo. Vestibulum dignissim malesuada magna, imperdiet blandit est
+            commodo
+            vitae. Sed a suscipit nisi, non imperdiet orci. Nulla rutrum ligula ut velit ultrices, non tincidunt lacus
+            elementum. Etiam vitae blandit arcu, nec congue felis. Praesent fermentum vehicula risus, vitae finibus felis
+            vestibulum ac. In ullamcorper tellus vitae ante euismod, eget consectetur nibh efficitur. Donec iaculis
+            placerat
+            erat a rutrum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+            Donec
+            semper erat nec ipsum molestie, eu commodo dui lobortis.</p>
+</article>`
 };
 
 export const WithTable = Template.bind({});
@@ -96,7 +112,6 @@ export const StickyHeader = Template.bind({});
 StickyHeader.args = {
   ...WithTitle.args,
   closeable: true,
-  headerSticksBelow: ['.os-content']
 };
 
 export const NoTitle = Template.bind({});

@@ -19,22 +19,32 @@
     <sba-status
       :status="application.status"
       :date="application.statusTimestamp"
-      class="application-summary__status"
+      class="pr-3"
     />
-    <p class="application-summary__name">
-      <span v-text="application.name" /><br>
-      <span class="is-muted">
+    <div class="flex-1">
+      <div
+        class="font-semibold"
+        v-text="application.name"
+      />
+      <small>
         <a
           v-if="application.instances.length === 1"
           :href="healthUrl"
           v-text="healthUrl"
         />
-        <span v-else v-text="`${application.instances.length} instances`" />
-      </span>
-    </p>
-    <p class="application-summary__version" v-text="application.buildVersion" />
+        <span
+          v-else
+          v-text="`${application.instances.length} instances`"
+        />
+      </small>
+    </div>
+    <p
+      class="hidden md:block w-1/4"
+      v-text="application.buildVersion"
+    />
   </div>
 </template>
+
 <script>
   import Application from '../../services/application';
 
@@ -56,20 +66,9 @@
     }
   }
 </script>
-<style lang="css">
+
+<style scoped>
 .application-summary {
   display: contents;
 }
-.application-summary__status {
-  @apply pr-2;
-  width: 32px;
-}
-.application-summary__name, .application-summary__version {
-  flex-grow: 1;
-  flex-basis: 50%;
-}
-.application-summary__name.title {
-  margin: 0.75rem 0;
-}
-
 </style>

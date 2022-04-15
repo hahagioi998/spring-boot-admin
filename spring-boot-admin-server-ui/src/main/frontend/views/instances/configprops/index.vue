@@ -39,7 +39,7 @@
     <sba-panel
       v-for="bean in configurationPropertiesBeans"
       :key="bean.name"
-      :header-sticks-below="['#navigation']"
+      :header-sticks-below="'#subnavigation'"
       :title=" bean.name"
     >
       <div class="-mx-4 -my-3">

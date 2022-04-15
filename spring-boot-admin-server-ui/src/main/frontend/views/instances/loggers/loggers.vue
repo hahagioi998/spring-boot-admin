@@ -118,7 +118,6 @@
 </template>
 
 <script>
-import sticksBelow from '@/directives/sticks-below';
 import {finalize, from, listen} from '@/utils/rxjs';
 import SbaInstanceSection from "../shell/sba-instance-section.vue";
 import LoggersList from "./loggers-list.vue";
@@ -146,7 +145,6 @@ const addLoggerCreationEntryIfLoggerNotPresent = (nameFilter, loggers) => {
 
 export default {
   components: {SbaInstanceSection, LoggersList},
-  directives: {sticksBelow},
   props: {
     instanceCount: {
       type: Number,

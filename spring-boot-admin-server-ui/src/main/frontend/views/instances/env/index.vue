@@ -52,7 +52,7 @@
     <template #default>
       <div
         v-if="env && env?.activeProfiles.length > 0"
-        class="mb-6"
+        class="mb-6 gap-1 flex"
       >
         <span
           v-for="profile in env.activeProfiles"

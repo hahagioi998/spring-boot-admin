@@ -7,6 +7,7 @@
     <template #default="slotProps">
       <span
         v-if="slotProps.refreshStatus === 'completed'"
+        class="is-success"
         v-text="$t('instances.env.context_refreshed')"
       />
       <span

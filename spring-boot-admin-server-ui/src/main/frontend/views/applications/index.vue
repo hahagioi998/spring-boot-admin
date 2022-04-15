@@ -19,10 +19,8 @@
     <sba-wave :wave-classes="['-mt-14']" />
 
     <sba-sticky-subnav v-if="applications.length > 0">
-      <div class="container mx-auto flex items-center">
-        <div>
-          <applications-stats :applications="applications" />
-        </div>
+      <div class="container mx-auto flex">
+        <applications-stats :applications="applications" />
         <div class="flex-1">
           <sba-input
             v-model="filter"

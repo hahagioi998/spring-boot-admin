@@ -15,17 +15,15 @@
   -->
 
 <template>
-  <div class="inline-flex items-center hidden md:block">
-    <div class="mr-1">
-      <sba-tag
-        :label="$t('applications.applications')"
-        :value="applicationsCount"
-      />
-      <sba-tag
-        :label="$t('applications.instances')"
-        :value="instancesCount"
-      />
-    </div>
+  <div class="hidden md:flex mr-1 gap-1">
+    <sba-tag
+      :label="$t('applications.applications')"
+      :value="applicationsCount"
+    />
+    <sba-tag
+      :label="$t('applications.instances')"
+      :value="instancesCount"
+    />
   </div>
 </template>
 <script>

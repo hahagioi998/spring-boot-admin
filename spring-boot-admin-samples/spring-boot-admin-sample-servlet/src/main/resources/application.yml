@@ -22,39 +22,6 @@ management:
       show-details: ALWAYS
 
 spring:
-  cloud:
-    discovery:
-      client:
-        simple:
-          instances:
-            spring-boot-2.0:
-              - uri: "http://ec2-3-120-149-155.eu-central-1.compute.amazonaws.com:80"
-                metadata:
-                  management.context-path: "/app/2.0/actuator"
-            spring-boot-2.1:
-              - uri: "http://ec2-3-120-149-155.eu-central-1.compute.amazonaws.com:80"
-                metadata:
-                  management.context-path: "/app/2.1/actuator"
-            spring-boot-2.2:
-              - uri: "http://ec2-3-120-149-155.eu-central-1.compute.amazonaws.com:80"
-                metadata:
-                  management.context-path: "/app/2.2/actuator"
-            spring-boot-2.3:
-              - uri: "http://ec2-3-120-149-155.eu-central-1.compute.amazonaws.com:80"
-                metadata:
-                  management.context-path: "/app/2.3/actuator"
-            spring-boot-2.4:
-              - uri: "http://ec2-3-120-149-155.eu-central-1.compute.amazonaws.com:80"
-                metadata:
-                  management.context-path: "/app/2.4/actuator"
-            spring-boot-2.5:
-              - uri: "http://ec2-3-120-149-155.eu-central-1.compute.amazonaws.com:80"
-                metadata:
-                  management.context-path: "/app/2.5/actuator"
-            spring-boot-2.6:
-              - uri: "http://ec2-3-120-149-155.eu-central-1.compute.amazonaws.com:80"
-                metadata:
-                  management.context-path: "/app/2.6/actuator"
   application:
     name: spring-boot-admin-sample-servlet
   profiles:
@@ -65,7 +32,7 @@ spring:
       client:
         url: http://localhost:8080
         instance:
-          service-host-type: IP
+          service-host-type: HOST_NAME
           metadata:
             tags:
               environment: test

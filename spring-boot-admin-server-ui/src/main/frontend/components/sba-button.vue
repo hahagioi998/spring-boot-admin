@@ -25,16 +25,12 @@ export default {
       type: Boolean,
       default: false
     },
-    buttonClass: {
-      type: Object,
-      default: () => {}
-    }
   },
+  emits: ['click'],
   computed: {
     classNames() {
       return {
-        ...this.buttonClass,
-        'rounded-md shadow-sm': !this.flat,
+        'shadow-sm': !this.flat,
         // Sizes
         'px-3 py-2': this.size === 'sm',
         'px-5 py-2.5': this.size === ''
@@ -45,13 +41,13 @@ export default {
 }
 </script>
 
-<style class="css">
+<style scoped>
 .btn {
-  @apply font-medium text-sm text-center focus:outline-none text-gray-900 border-gray-300 border border-gray-300 bg-white focus:ring-indigo-500 focus:border-indigo-500;
+  @apply rounded-l-lg rounded-r-lg font-medium text-sm text-center focus:outline-none text-black border-gray-300 border border-gray-300 bg-white focus:ring-indigo-500 focus:border-indigo-500;
 }
 
 .btn:disabled {
-  @apply text-gray-900;
+  @apply text-gray-300;
 }
 
 .btn.is-danger {
@@ -59,19 +55,19 @@ export default {
 }
 
 .btn.is-warning {
-  @apply focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm;
+  @apply focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium text-sm;
 }
 
 .btn.is-info {
-  @apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm focus:outline-none ;
+  @apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-sm focus:outline-none ;
 }
 
 .btn.is-success {
-  @apply focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm;
+  @apply focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium  text-sm;
 }
 
 .btn.is-light {
-  @apply text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm;
+  @apply text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium  text-sm;
 }
 
 .btn.is-light.is-active {
@@ -79,7 +75,7 @@ export default {
 }
 
 .btn.is-black {
-  @apply text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm;
+  @apply text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium  text-sm;
 }
 
 .btn.is-primary {

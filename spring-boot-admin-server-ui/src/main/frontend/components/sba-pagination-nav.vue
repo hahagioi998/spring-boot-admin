@@ -16,14 +16,13 @@
 
 <template>
   <div>
-    <nav
+    <sba-button-group
       class="relative z-0 btn-group rounded-md shadow-sm -space-x-px"
       aria-label="Pagination"
     >
       <sba-button
-        href="#"
-        class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-2 py-2 border text-sm font-medium"
-        @click="$emit('update:modelValue', modelValue - 1)"
+        :disabled="modelValue <= 1"
+        @click="goPrev()"
       >
         <span
           class="sr-only"
@@ -37,22 +36,32 @@
       <sba-button
         v-for="(page, idx) in pageRange"
         :key="'page_' + idx"
-        href="#"
-        class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-        :class="{'bg-indigo-50 border border-indigo-500 z-10': page === modelValue, 'cursor-not-allowed': page === skipPageString}"
+        :aria-hidden="page === skipPageString"
+        :aria-current="page === modelValue"
+        :disabled="page === skipPageString"
+        :class="{'is-active': page === modelValue, 'cursor-not-allowed': page === skipPageString}"
         @click="() => changePage(page)"
       >
+        <span class="sr-only">
+          <span
+            v-if="page !== modelValue"
+            v-text="$t('term.go_to_page_n', {page})"
+          />
+          <span
+            v-else
+            v-text="$t('term.current_page', {page})"
+          />
+        </span>
+
         <span
-          class="sr-only"
-          v-text="$t('term.go_to_page_n', {page})"
+          aria-hidden="true"
+          v-text="page"
         />
-        <span v-text="page" />
       </sba-button>
 
       <sba-button
-        href="#"
-        class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-2 py-2 border text-sm font-medium"
-        @click="$emit('update:modelValue', modelValue+1)"
+        :disabled="modelValue >= pageCount"
+        @click="goNext"
       >
         <span
           class="sr-only"
@@ -63,13 +72,17 @@
           :icon="['fas','angle-double-right']"
         />
       </sba-button>
-    </nav>
+    </sba-button-group>
   </div>
 </template>
 
 <script>
+import SbaButtonGroup from "./sba-button-group.vue";
+import SbaButton from "./sba-button.vue";
+
 export default {
   name: 'SbaPaginationNav',
+  components: {SbaButton, SbaButtonGroup},
   props: {
     modelValue: {type: Number, default: 1},
     pageCount: {type: Number, required: true},
@@ -114,6 +127,18 @@ export default {
     }
   },
   methods: {
+    goPrev() {
+      const newPage = this.modelValue - 1;
+      if (newPage > 0) {
+        this.$emit('update:modelValue', newPage)
+      }
+    },
+    goNext() {
+      const newPage = this.modelValue + 1;
+      if (newPage <= this.pageCount) {
+        this.$emit('update:modelValue', newPage)
+      }
+    },
     changePage(page) {
       if (page !== this.skipPageString) {
         this.$emit('update:modelValue', page)
@@ -122,4 +147,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.is-active {
+  @apply bg-indigo-50 border border-indigo-500 z-10 !important;
+  @apply font-extrabold;
+}
+</style>
 

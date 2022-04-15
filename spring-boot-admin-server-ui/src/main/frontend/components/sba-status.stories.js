@@ -5,7 +5,7 @@ export default {
   title: 'SBA Components/Status',
 };
 
-const Template = (args, { argTypes }) => ({
+const Template = (args) => ({
   components: { SbaStatus },
   setup() { return { args }; },
   template: '<sba-status v-bind="args" />',

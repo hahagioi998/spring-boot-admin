@@ -22,12 +22,14 @@ module.exports = {
   "core": {
     "builder": "@storybook/builder-vite"
   },
-  async viteFinal(config, { configType }) {
+  async viteFinal(config) {
     const frontend = resolve(__dirname, '../src/main/frontend');
     config.plugins = config.plugins.filter(p => p.name !== "vue-docgen");
     return mergeConfig(config, {
       resolve: {
-        alias: { '@': frontend },
+        alias: {
+          '@': frontend,
+        },
       },
     });
   },

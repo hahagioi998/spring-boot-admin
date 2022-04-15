@@ -83,6 +83,7 @@ export default {
       default: null
     }
   },
+  emits: ['update:modelValue'],
   computed: {
     hasLabel() {
       return this.label !== null && this.label.trim() !== '';

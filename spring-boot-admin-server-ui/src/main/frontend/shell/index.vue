@@ -35,6 +35,7 @@
 
 <script>
 import SbaNavbar from './navbar.vue';
+
 export default {
   components: {SbaNavbar},
   props: {

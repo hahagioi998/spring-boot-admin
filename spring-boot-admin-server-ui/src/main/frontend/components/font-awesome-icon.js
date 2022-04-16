@@ -55,6 +55,7 @@ import {faInfoCircle} from "@fortawesome/free-solid-svg-icons/faInfoCircle.js";
 import {faExclamationCircle} from "@fortawesome/free-solid-svg-icons/faExclamationCircle.js";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons/faCheckCircle.js";
 import {faFrownOpen} from "@fortawesome/free-solid-svg-icons/faFrownOpen.js";
+import {faBars} from "@fortawesome/free-solid-svg-icons/faBars.js";
 
 export default FontAwesomeIcon;
 
@@ -66,6 +67,7 @@ library.add(
   faBell,
   faBellSlash,
   faBook,
+  faBars,
   faCheck,
   faCube,
   faCubes,

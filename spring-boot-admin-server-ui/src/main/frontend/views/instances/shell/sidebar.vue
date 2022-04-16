@@ -16,7 +16,8 @@
 
 <template>
   <aside
-    class="fixed h-full flex flex-col shadow-md bg-white overflow-hidden backdrop-filter backdrop-blur-lg bg-opacity-40 z-40"
+    class="h-full flex flex-col shadow-md bg-white backdrop-filter backdrop-blur-lg bg-opacity-40 z-40 w-10 md:w-60 transition-all left-0 pb-14 fixed"
+    :class="{'w-60': sidebarOpen}"
   >
     <ul class="relative px-1 py-1 overflow-y-auto">
       <li class="relative mb-1 hidden md:block">
@@ -35,6 +36,15 @@
         </router-link>
       </li>
 
+      <li class="block md:hidden">
+        <a
+          class="navbar-link navbar-link__group"
+          @click.stop="toggleSidebar"
+        >
+          <font-awesome-icon :icon="['fas', 'bars']" />
+        </a>
+      </li>
+
       <li
         v-for="group in enabledGroupedViews"
         :key="group.name"
@@ -51,7 +61,6 @@
             v-html="group.icon"
           />
           <span
-            class="hidden md:block"
             v-text="hasMultipleViews(group) ? getGroupTitle(group.id) : $t(group.views[0].label)"
           />
           <svg
@@ -74,12 +83,12 @@
 
         <ul
           v-if="hasMultipleViews(group) && isActiveGroup(group)"
-          class="relative accordion-collapse collapse hidden md:block"
+          class="relative block bg-white"
+          :class="{'hidden': !sidebarOpen}"
         >
           <li
             v-for="view in group.views"
             :key="view.name"
-            class="relative"
           >
             <router-link
               class="navbar-link navbar-link__group_item"
@@ -101,8 +110,10 @@ import Application from '../../../services/application';
 import Instance from '../../../services/instance';
 import {VIEW_GROUP_ICON} from "../../index.js";
 import {compareBy} from "../../../utils/collections.js";
+import SbaButton from "../../../components/sba-button.vue";
 
 export default {
+  components: {SbaButton},
   props: {
     views: {
       type: Array,
@@ -115,6 +126,11 @@ export default {
     application: {
       type: Application,
       default: null
+    }
+  },
+  data() {
+    return {
+      sidebarOpen: false
     }
   },
   computed: {
@@ -147,7 +163,15 @@ export default {
       return Array.from(groups.values());
     }
   },
+  watch: {
+    $route() {
+      this.sidebarOpen = false;
+    }
+  },
   methods: {
+    toggleSidebar() {
+      this.sidebarOpen = !this.sidebarOpen;
+    },
     getGroupTitle(groupId) {
       const key = 'sidebar.' + groupId + '.title'
       const translated = this.$t(key);

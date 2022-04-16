@@ -1,6 +1,6 @@
 <template>
   <sba-sticky-subnav>
-    <div class="flex px-1">
+    <div class="flex">
       <div class="flex-2">
         <instance-switcher
           :instances="application.instances"

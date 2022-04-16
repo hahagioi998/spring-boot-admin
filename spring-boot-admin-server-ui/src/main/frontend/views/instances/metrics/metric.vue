@@ -18,7 +18,7 @@
   <div>
     <sba-panel
       :title="metricName"
-      :header-sticks-below="'#subnavigation'"
+      :header-sticks-below="'#navigation'"
     >
       <template #actions>
         <div

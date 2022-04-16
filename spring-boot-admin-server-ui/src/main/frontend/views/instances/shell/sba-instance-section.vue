@@ -2,7 +2,7 @@
   <section :class="{'loading': loading}">
     <slot name="before" />
 
-    <div class="px-6 py-6">
+    <div class="px-2 md:px-6 py-6">
       <sba-alert
         v-if="error"
         class="mb-6"

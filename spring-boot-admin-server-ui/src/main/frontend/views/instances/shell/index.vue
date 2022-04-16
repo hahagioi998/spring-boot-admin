@@ -24,12 +24,11 @@
       <instance-sidebar
         v-if="instance"
         :key="instanceId"
-        class="w-10 md:w-60"
         :views="views"
         :instance="instance"
         :application="application"
       />
-      <main class="h-full relative z-0 ml-10 md:ml-60">
+      <main class="h-full relative z-0 ml-10 md:ml-60 transition-all">
         <div class="">
           <router-view
             v-if="instance"

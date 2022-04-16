@@ -15,28 +15,27 @@
   -->
 
 <template>
-  <div>
-    <sba-panel
-      v-if="hasLoaded"
-      :title="$t('instances.details.process.title')"
-    >
-      <div>
-        <sba-alert
-          v-if="error"
-          :error="error"
-          :title="$t('term.fetch_failed')"
-        />
-        <sba-key-value-table
-          class="-mx-4 -my-3"
-          :map="tableData"
-        >
-          <template #uptime="value">
-            <process-uptime :value="value.value" />
-          </template>
-        </sba-key-value-table>
-      </div>
-    </sba-panel>
-  </div>
+  <sba-panel
+    v-if="hasLoaded"
+    :title="$t('instances.details.process.title')"
+  >
+    <div>
+      <sba-alert
+        v-if="error"
+        :error="error"
+        :title="$t('term.fetch_failed')"
+      />
+      <sba-key-value-table
+        v-else
+        class="-mx-4 -my-3"
+        :map="tableData"
+      >
+        <template #uptime="value">
+          <process-uptime :value="value.value" />
+        </template>
+      </sba-key-value-table>
+    </div>
+  </sba-panel>
 </template>
 
 <script>
@@ -106,8 +105,9 @@ export default {
       } catch (error) {
         this.error = error;
         console.warn('Fetching Uptime failed:', error);
+      } finally {
+        this.hasLoaded = true;
       }
-      this.hasLoaded = true;
     },
     async fetchPid() {
       if (this.instance.hasEndpoint('env')) {
@@ -116,8 +116,9 @@ export default {
           this.pid = response.data.property.value;
         } catch (error) {
           console.warn('Fetching PID failed:', error);
+        } finally {
+          this.hasLoaded = true;
         }
-        this.hasLoaded = true;
       }
     },
     async fetchCpuCount() {
@@ -125,8 +126,9 @@ export default {
         this.systemCpuCount = (await this.fetchMetric('system.cpu.count')).measurements[0].value;
       } catch (error) {
         console.warn('Fetching Cpu Count failed:', error);
+      } finally {
+        this.hasLoaded = true;
       }
-      this.hasLoaded = true;
     },
     createSubscription() {
       const vm = this;

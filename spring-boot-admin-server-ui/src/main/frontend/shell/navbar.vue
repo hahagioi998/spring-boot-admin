@@ -71,55 +71,57 @@
               @localeChanged="changeLocale"
             />
 
-            <div class="ml-3 relative">
-              <div>
-                <button
-                  id="user-menu-button"
-                  type="button"
-                  class="h-8 w-8 max-w-xs bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                  :aria-expanded="showUserMenu"
-                  aria-haspopup="true"
-                  @click.stop="showUserMenu = !showUserMenu"
-                >
-                  <span class="sr-only">Open user menu</span>
-                  <font-awesome-icon
-                    color="white"
-                    class="rounded-full"
-                    icon="user-circle"
-                    size="2x"
-                  />
-                </button>
-              </div>
-            </div>
-
-            <div
-              v-if="showUserMenu"
-              class="origin-top-right absolute right-0 mt-26 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="user-menu-button"
-              tabindex="-1"
-            >
-              <a class="block px-4 py-2 text-sm text-gray-700">
-                <form
-                  action="logout"
-                  method="post"
-                >
-                  <input
-                    v-if="csrfToken"
-                    type="hidden"
-                    :name="csrfParameterName"
-                    :value="csrfToken"
-                  >
+            <template v-if="userName">
+              <div class="ml-3 relative">
+                <div>
                   <button
-                    type="submit"
-                    value="logout"
+                    id="user-menu-button"
+                    type="button"
+                    class="h-8 w-8 max-w-xs bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                    :aria-expanded="showUserMenu"
+                    aria-haspopup="true"
+                    @click.stop="showUserMenu = !showUserMenu"
                   >
-                    <font-awesome-icon icon="sign-out-alt" />&nbsp;<span v-text="$t('navbar.logout')" />
+                    <span class="sr-only">Open user menu</span>
+                    <font-awesome-icon
+                      color="white"
+                      class="rounded-full"
+                      icon="user-circle"
+                      size="2x"
+                    />
                   </button>
-                </form>
-              </a>
-            </div>
+                </div>
+              </div>
+
+              <div
+                v-if="showUserMenu"
+                class="origin-top-right absolute right-0 mt-26 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="user-menu-button"
+                tabindex="-1"
+              >
+                <a class="block px-4 py-2 text-sm text-gray-700">
+                  <form
+                    action="logout"
+                    method="post"
+                  >
+                    <input
+                      v-if="csrfToken"
+                      type="hidden"
+                      :name="csrfParameterName"
+                      :value="csrfToken"
+                    >
+                    <button
+                      type="submit"
+                      value="logout"
+                    >
+                      <font-awesome-icon icon="sign-out-alt" />&nbsp;<span v-text="$t('navbar.logout')" />
+                    </button>
+                  </form>
+                </a>
+              </div>
+            </template>
           </div>
         </div>
 
@@ -205,7 +207,10 @@
         <!-- LINKS -->
       </div>
 
-      <div class="pt-4 pb-3 border-t border-gray-700">
+      <div
+        v-if="userName"
+        class="pt-4 pb-3 border-t"
+      >
         <div class="flex items-center px-5">
           <div class="flex-shrink-0">
             <font-awesome-icon
@@ -222,26 +227,25 @@
             />
           </div>
         </div>
-        <div class="mt-3 px-2 space-y-1 is-hidden bg-gray-100">
-          <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-            <form
-              action="logout"
-              method="post"
+        <div class="mt-3 px-2 space-y-1">
+          <form
+            action="logout"
+            method="post"
+          >
+            <input
+              v-if="csrfToken"
+              type="hidden"
+              :name="csrfParameterName"
+              :value="csrfToken"
             >
-              <input
-                v-if="csrfToken"
-                type="hidden"
-                :name="csrfParameterName"
-                :value="csrfToken"
-              >
-              <button
-                type="submit"
-                value="logout"
-              >
-                <font-awesome-icon icon="sign-out-alt" />&nbsp;<span v-text="$t('navbar.logout')" />
-              </button>
-            </form>
-          </a>
+            <button
+              type="submit"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 text-left py-2 rounded-md font-medium w-full"
+              value="logout"
+            >
+              <font-awesome-icon icon="sign-out-alt" />&nbsp;<span v-text="$t('navbar.logout')" />
+            </button>
+          </form>
         </div>
       </div>
     </div>
@@ -295,7 +299,7 @@ export default {
   },
   created() {
     this.brand = sbaConfig.uiSettings.brand;
-    //this.userName = sbaConfig.user ? sbaConfig.user.name : null;
+    this.userName = sbaConfig.user ? sbaConfig.user.name : null;
     this.availableLocales = AVAILABLE_LANGUAGES;
     this.csrfToken = readCookie('XSRF-TOKEN');
     this.csrfParameterName = sbaConfig.csrf.parameterName;

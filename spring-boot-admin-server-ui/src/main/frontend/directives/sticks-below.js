@@ -19,11 +19,14 @@ const mounted = (el, binding) => {
     return;
   }
 
-  const clientRect = document.querySelector(binding.value).getBoundingClientRect();
-  const top = clientRect.height + clientRect.top;
+  const targetElement = document.querySelector(binding.value);
+  if (targetElement) {
+    const clientRect = targetElement.getBoundingClientRect();
+    const top = clientRect.height + clientRect.top;
 
-  el.style.top = `${top}px`;
-  el.style.position = 'sticky';
+    el.style.top = `${top}px`;
+    el.style.position = 'sticky';
+  }
 };
 
 export default {

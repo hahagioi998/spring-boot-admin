@@ -69,6 +69,7 @@
     "msw": "^0.39.2",
     "msw-storybook-addon": "^1.6.3",
     "postcss": "8.4.12",
+    "postcss-sass-color-functions": "^1.1.0",
     "tailwindcss": "3.0.23",
     "vite": "2.9.0",
     "vite-plugin-static-copy": "^0.4.4",

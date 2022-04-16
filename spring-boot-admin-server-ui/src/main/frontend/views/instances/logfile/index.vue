@@ -24,7 +24,10 @@
         <div class="mx-6 flex items-center justify-end gap-1">
           <div class="flex-1">
             <span v-text="$t('instances.logfile.label')" />&nbsp;
-            <small v-text="skippedBytesString" />
+            <small
+              class="hidden md:block"
+              v-text="skippedBytesString"
+            />
           </div>
 
           <div class="flex items-start">
@@ -87,7 +90,10 @@
             </sba-button>
           </div>
 
-          <sba-button @click="downloadLogfile()">
+          <sba-button
+            class="hidden md:block"
+            @click="downloadLogfile()"
+          >
             <font-awesome-icon icon="download" />&nbsp;
             <span v-text="$t('instances.logfile.download')" />
           </sba-button>

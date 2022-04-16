@@ -27,7 +27,7 @@
       <details-hero :instance="instance" />
     </template>
 
-    <div class="flex gap-6">
+    <div class="flex gap-6 flex-col md:flex-row">
       <div class="flex-1">
         <details-info
           v-if="hasInfo"
@@ -43,7 +43,7 @@
       </div>
     </div>
 
-    <div class="flex gap-6">
+    <div class="flex gap-6 flex-col md:flex-row">
       <div class="flex-1">
         <details-process
           v-if="hasProcess"
@@ -63,7 +63,7 @@
       </div>
     </div>
 
-    <div class="flex gap-6">
+    <div class="flex gap-6 flex-col md:flex-row">
       <div class="flex-1">
         <details-memory
           v-if="hasMemory"
@@ -80,7 +80,7 @@
       </div>
     </div>
 
-    <div class="flex gap-6">
+    <div class="flex gap-6 flex-col md:flex-row">
       <div class="flex-1">
         <details-datasources
           v-if="hasDatasources"

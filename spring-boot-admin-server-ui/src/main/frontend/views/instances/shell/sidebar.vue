@@ -16,10 +16,10 @@
 
 <template>
   <aside
-    class="fixed w-60 h-full flex flex-col shadow-md bg-white overflow-hidden backdrop-filter backdrop-blur-lg bg-opacity-40 z-40"
+    class="fixed h-full flex flex-col shadow-md bg-white overflow-hidden backdrop-filter backdrop-blur-lg bg-opacity-40 z-40"
   >
     <ul class="relative px-1 py-1 overflow-y-auto">
-      <li class="relative mb-1">
+      <li class="relative mb-1 hidden md:block">
         <router-link
           class="sticky top-0 flex items-center text-sm py-4 px-6 text-left overflow-hidden text-gray-700 text-ellipsis rounded text-green-600 bg-green-50 transition duration-300 ease-in-out cursor-pointer"
           :to="{name: 'instances/details', params: {instanceId: instance.id}}"
@@ -47,14 +47,19 @@
           exact-active-class=""
           :class="{'navbar-link__active' : isActiveGroup(group) }"
         >
-          <span v-html="group.icon" />
-          <span v-text="hasMultipleViews(group) ? getGroupTitle(group.id) : $t(group.views[0].label)" />
+          <span
+            v-html="group.icon"
+          />
+          <span
+            class="hidden md:block"
+            v-text="hasMultipleViews(group) ? getGroupTitle(group.id) : $t(group.views[0].label)"
+          />
           <svg
             v-if="hasMultipleViews(group)"
             aria-hidden="true"
             focusable="false"
             data-prefix="fas"
-            class="w-3 h-3 ml-auto"
+            class="h-3 ml-auto hidden md:block"
             :class="{'-rotate-90': !isActiveGroup(group), '': isActiveGroup(group)}"
             role="img"
             xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +74,7 @@
 
         <ul
           v-if="hasMultipleViews(group) && isActiveGroup(group)"
-          class="relative accordion-collapse collapse"
+          class="relative accordion-collapse collapse hidden md:block"
         >
           <li
             v-for="view in group.views"
@@ -172,6 +177,6 @@ export default {
 }
 
 .navbar-link__group {
-  @apply h-12 px-6;
+  @apply h-12 px-2 md:px-6;
 }
 </style>

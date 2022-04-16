@@ -1,12 +1,18 @@
 <template>
-  <div class=" px-6 py-10">
+  <div class="px-6 pt-10 pb-5">
     <div class="m-auto text-center">
-      <div>
-        <h1 class="text-4xl text-center font-bold text-gray-900 tracking-tight" v-text="instance.registration.name" />
-        <small><em v-text="instance.id" /></small>
-      </div>
+      <h1
+        class="text-2xl md:text-4xl text-center font-bold text-gray-900 tracking-tight"
+        v-text="instance.registration.name"
+      />
+      <small><em v-text="instance.id" /></small>
     </div>
-    <sba-tags v-if="instance" :tags="instance.tags" />
+    <div class="mt-4 text-center">
+      <sba-tags
+        v-if="instance"
+        :tags="instance.tags"
+      />
+    </div>
   </div>
 </template>
 

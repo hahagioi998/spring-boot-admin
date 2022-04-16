@@ -15,11 +15,16 @@
   -->
 
 <template>
-  <div v-if="hasTags">
-    <span v-for="(value, key) in tags" :key="key">
-      <sba-tag :key="key" :label="key" :value="value" />
-    </span>
-  </div>
+  <span
+    v-for="(value, key) in tags"
+    :key="key"
+  >
+    <sba-tag
+      :key="key"
+      :label="key"
+      :value="value"
+    />
+  </span>
 </template>
 
 <script>
@@ -29,11 +34,6 @@ export default {
       tags: {
         type: Object,
         required: true
-      }
-    },
-    computed: {
-      hasTags() {
-        return Object.keys(this.tags).length > 0;
       }
     }
   }

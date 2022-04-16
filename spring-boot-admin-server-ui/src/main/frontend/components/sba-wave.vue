@@ -10,7 +10,7 @@
     >
       <defs>
         <linearGradient
-          :id="'a'+id"
+          :id="'bg-wave-a-'+id"
           x1="2125.74"
           y1="495.08"
           x2="2126.93"
@@ -28,38 +28,38 @@
           />
         </linearGradient>
         <linearGradient
-          :id="'b'+id"
+          :id="'bg-wave-b-'+id"
           x1="2125.74"
           y1="495.08"
           x2="2126.93"
           y2="495.08"
           gradientTransform="matrix(1680, 0, 0, -925.87, -3571233, 458484.7)"
-          :xlink:href="'#a'+id"
+          :xlink:href="'#bg-wave-a-'+id"
         />
         <linearGradient
-          :id="'c'+id"
+          :id="'bg-wave-c-'+id"
           x1="2125.74"
           y1="495.07"
           x2="2126.93"
           y2="495.07"
           gradientTransform="matrix(1680, 0, 0, -956.3, -3571233, 473553.87)"
-          :xlink:href="'#a'+id"
+          :xlink:href="'#bg-wave-a-'+id"
         />
       </defs>
       <path
         d="M0,0V142.67q200,73.8,400,42.5T800,139q200-15,400,36.8t400-5.6q200-57.45,400-18.9V0Z"
-        style="isolation:isolate;opacity:0.4000000059604645"
-        :style="`fill:url(#a${id})`"
+        style="isolation:isolate;opacity:0.4"
+        :style="`fill:url(#bg-wave-a-${id})`"
       />
       <path
         d="M0,0V152.67q200,64.5,400,29.5a1115.6,1115.6,0,0,1,400,2.4q200,37.35,400,19.1a3681.66,3681.66,0,0,1,400-14.6q200,3.6,400-45.5V0Z"
-        style="isolation:isolate;opacity:0.4000000059604645"
-        :style="`fill:url(#b${id})`"
+        style="isolation:isolate;opacity:0.4"
+        :style="`fill:url(#bg-wave-b-${id})`"
       />
       <path
         d="M0,0V180.77q200,7.35,400-34.1T800,190q200,84.75,400-8.4t400,11.9q200,105,400-26.9V0Z"
-        style="isolation:isolate;opacity:0.4000000059604645"
-        :style="`fill:url(#c${id})`"
+        style="isolation:isolate;opacity:0.4"
+        :style="`fill:url(#bg-wave-c-${id})`"
       />
     </svg>
   </div>

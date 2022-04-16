@@ -16,7 +16,11 @@
 
 <template>
   <section>
-    <sba-wave :wave-classes="['-mt-14']" />
+    <sba-wave
+      :start-color="backgroundColors.start"
+      :stop-color="backgroundColors.stop"
+      :wave-classes="['-mt-14']"
+    />
 
     <sba-sticky-subnav v-if="applications.length > 0">
       <div class="container mx-auto flex">
@@ -129,6 +133,7 @@ import handle from './handle.vue';
 import NotificationFilterSettings from './notification-filter-settings.vue';
 import ApplicationStatusHero from '@/views/applications/application-status-hero.vue';
 import SbaStickySubnav from "../../components/sba-sticky-subnav.vue";
+import sbaConfig from "../../sba-config.js";
 
 const instanceMatchesFilter = (term, instance) => {
   const predicate = value => String(value).toLowerCase().includes(term);
@@ -170,7 +175,8 @@ export default {
     filter: null,
     hasNotificationFiltersSupport: false,
     showNotificationFilterSettingsObject: null,
-    notificationFilters: []
+    notificationFilters: [],
+    backgroundColors: {}
   }),
   computed: {
     statusGroups() {
@@ -196,6 +202,9 @@ export default {
         this.scrollIntoView(newVal);
       }
     }
+  },
+  created() {
+    this.backgroundColors = sbaConfig.uiSettings.background;
   },
   mounted() {
     this.hasNotificationFiltersSupport = NotificationFilter.isSupported();

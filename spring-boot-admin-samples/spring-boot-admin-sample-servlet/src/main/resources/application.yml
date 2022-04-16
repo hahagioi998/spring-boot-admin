@@ -29,6 +29,10 @@ spring:
       - secure
   boot:
     admin:
+      ui:
+        background:
+          start: "#9AFFB4"
+          stop: "#0000ff"
       client:
         url: http://localhost:8080
         instance:

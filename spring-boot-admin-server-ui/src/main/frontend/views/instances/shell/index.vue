@@ -66,10 +66,7 @@
     data() {
       return {
         instanceId: this.$route.params.instanceId,
-        backgroundColors: {
-          start: '#84eacb',
-          stop: '#3abae0',
-        }
+        backgroundColors: {}
       }
     },
     computed: {

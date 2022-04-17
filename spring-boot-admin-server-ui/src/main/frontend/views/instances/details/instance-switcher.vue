@@ -4,9 +4,13 @@
     class="relative inline-block z-50"
   >
     <button
-      class="inline-flex justify-center bg-gray-100 w-full rounded-md text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+      class="inline-flex justify-center items-center bg-gray-100 w-full rounded-md text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
       @click="showInstances = !showInstances"
     >
+      <sba-status
+        :status="currentInstance.statusInfo.status"
+        class="mr-1 hidden md:block"
+      />
       <span
         class="hidden sm:block truncate pr-1 w-full"
         v-text="currentInstance.registration.name"
@@ -45,14 +49,20 @@
             <a
               v-for="otherInstance in otherInstances"
               :key="otherInstance.id"
-              class="-m-3 p-3  rounded-lg hover:bg-gray-50"
+              class="-m-3 p-3 flex items-center rounded-lg hover:bg-gray-50"
               @click.stop="switchToInstance(otherInstance)"
             >
-              <div v-text="otherInstance.registration.name" />
-              <div
-                class="text-xs italic"
-                v-text="otherInstance.id"
+              <sba-status
+                :status="otherInstance.statusInfo.status"
+                class="mr-3"
               />
+              <div>
+                <div v-text="otherInstance.registration.name" />
+                <div
+                  class="text-xs italic"
+                  v-text="otherInstance.id"
+                />
+              </div>
             </a>
           </div>
         </div>

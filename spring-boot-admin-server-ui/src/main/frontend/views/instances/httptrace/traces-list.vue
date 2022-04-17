@@ -15,50 +15,102 @@
   -->
 
 <template>
-  <table class="httptraces table is-hoverable is-fullwidth">
+  <table class="httptraces table table-full table-sm">
     <thead>
       <tr>
-        <th class="httptraces__trace-timestamp" v-text="$t('instances.httptrace.timestamp')" />
-        <th class="httptraces__trace-method" v-text="$t('instances.httptrace.method')" />
-        <th class="httptraces__trace-uri" v-text="$t('instances.httptrace.uri')" />
-        <th class="httptraces__trace-status" v-text="$t('instances.httptrace.status')" />
-        <th class="httptraces__trace-contentType" v-text="$t('instances.httptrace.content_type_request')" />
-        <th class="httptraces__trace-contentLength" v-text="$t('instances.httptrace.length_request')" />
-        <th class="httptraces__trace-contentType" v-text="$t('instances.httptrace.content_type_response')" />
-        <th class="httptraces__trace-contentLength" v-text="$t('instances.httptrace.length_response')" />
-        <th class="httptraces__trace-timeTaken" v-text="$t('instances.httptrace.time')" />
+        <th
+          class="httptraces__trace-timestamp"
+          v-text="$t('instances.httptrace.timestamp')"
+        />
+        <th
+          class="httptraces__trace-method"
+          v-text="$t('instances.httptrace.method')"
+        />
+        <th
+          class="httptraces__trace-uri"
+          v-text="$t('instances.httptrace.uri')"
+        />
+        <th
+          class="httptraces__trace-status"
+          v-text="$t('instances.httptrace.status')"
+        />
+        <th
+          class="httptraces__trace-contentType"
+          v-text="$t('instances.httptrace.content_type_request')"
+        />
+        <th
+          class="httptraces__trace-contentLength"
+          v-text="$t('instances.httptrace.length_request')"
+        />
+        <th
+          class="httptraces__trace-contentType"
+          v-text="$t('instances.httptrace.content_type_response')"
+        />
+        <th
+          class="httptraces__trace-contentLength"
+          v-text="$t('instances.httptrace.length_response')"
+        />
+        <th
+          class="httptraces__trace-timeTaken"
+          v-text="$t('instances.httptrace.time')"
+        />
       </tr>
     </thead>
-    <transition-group tag="tbody" name="fade-in">
-      <tr v-if="newTracesCount > 0" key="new-traces">
+    <transition-group
+      tag="tbody"
+      name="fade-in"
+    >
+      <tr
+        v-if="newTracesCount > 0"
+        key="new-traces"
+      >
         <td
-          colspan="7"
-          class="has-text-primary has-text-centered is-selectable"
+          colspan="9"
+          class="text-center"
           @click="$emit('show-new-traces')"
           v-text="`${newTracesCount} new traces`"
         />
       </tr>
-      <template v-for="trace in traces" :key="trace.key">
+      <template
+        v-for="trace in traces"
+        :key="trace.key"
+      >
         <tr
           class="is-selectable"
           :class="{ 'httptraces__trace---is-detailed' : showDetails[trace.key] }"
-          @click="showDetails[trace.key] ? $delete(showDetails, trace.key) : $set(showDetails, trace.key, true)"
+          @click="showDetails[trace.key] ? delete showDetails[trace.key] : showDetails[trace.key] = true"
         >
-          <td class="httptraces__trace-timestamp" v-text="trace.timestamp.format('L HH:mm:ss.SSS')" />
-          <td class="httptraces__trace-method" v-text="trace.request.method" />
-          <td class="httptraces__trace-uri" v-text="trace.request.uri" />
+          <td
+            class="httptraces__trace-timestamp"
+            v-text="trace.timestamp.format('L HH:mm:ss.SSS')"
+          />
+          <td
+            class="httptraces__trace-method"
+            v-text="trace.request.method"
+          />
+          <td
+            class="httptraces__trace-uri"
+            v-text="trace.request.uri"
+          />
           <td class="httptraces__trace-status">
             <span
-              class="tag" :class="{ 'is-muted' : trace.isPending(), 'is-success' : trace.isSuccess(), 'is-warning' : trace.isClientError(), 'is-danger' : trace.isServerError() }"
+              class="tag"
+              :class="{ 'is-muted' : trace.isPending(), 'is-success' : trace.isSuccess(), 'is-warning' : trace.isClientError(), 'is-danger' : trace.isServerError() }"
               v-text="trace.response ? trace.response.status : 'pending'"
             />
           </td>
-          <td class="httptraces__trace-contentType" v-text="trace.contentTypeRequest" />
+          <td
+            class="httptraces__trace-contentType"
+            v-text="trace.contentTypeRequest"
+          />
           <td
             class="httptraces__trace-contentLength"
             v-text="trace.contentLengthRequest ? prettyBytes(trace.contentLengthRequest) : ''"
           />
-          <td class="httptraces__trace-contentType" v-text="trace.contentTypeResponse" />
+          <td
+            class="httptraces__trace-contentType"
+            v-text="trace.contentTypeResponse"
+          />
           <td
             class="httptraces__trace-contentLength"
             v-text="trace.contentLengthResponse ? prettyBytes(trace.contentLengthResponse) : ''"
@@ -68,14 +120,27 @@
             v-text="trace.timeTaken !== null && typeof trace.timeTaken !== 'undefined' ? `${trace.timeTaken} ms` : ''"
           />
         </tr>
-        <tr v-if="showDetails[trace.key]" :key="`${trace.key}-detail`">
+        <tr
+          v-if="showDetails[trace.key]"
+          :key="`${trace.key}-detail`"
+        >
           <td colspan="7">
-            <pre class="httptraces__trace-detail" v-text="toJson(trace)" />
+            <pre
+              class="httptraces__trace-detail"
+              v-text="toJson(trace)"
+            />
           </td>
         </tr>
       </template>
-      <tr v-if="traces.length === 0" key="no-traces">
-        <td class="is-muted" colspan="7" v-text="$t('instances.httptrace.no_traces_found')" />
+      <tr
+        v-if="traces.length === 0"
+        key="no-traces"
+      >
+        <td
+          class="is-muted"
+          colspan="7"
+          v-text="$t('instances.httptrace.no_traces_found')"
+        />
       </tr>
     </transition-group>
   </table>
@@ -123,12 +188,14 @@ export default {
   width: 130px;
 }
 .httptraces__trace-method {
+  @apply font-mono;
   width: 100px;
 }
 .httptraces__trace-uri {
   width: auto;
 }
 .httptraces__trace-status {
+  @apply font-mono;
   width: 80px;
 }
 .httptraces__trace-contentType {

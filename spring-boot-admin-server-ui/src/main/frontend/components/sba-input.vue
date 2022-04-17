@@ -38,6 +38,7 @@
         :value="modelValue"
         :type="type"
         :placeholder="placeholder"
+        :min="min"
         class="focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 p-2 relative flex-1 block w-full rounded-none sm:text-sm border-gray-300"
         :class="inputFieldClassNames"
         @input="$event => $emit('update:modelValue', $event.target.value)"
@@ -60,7 +61,6 @@
 
 <script>
 export default {
-  name: 'SbaInput',
   props: {
     label: {
       type: String,
@@ -81,6 +81,10 @@ export default {
     modelValue: {
       type: String,
       default: null
+    },
+    min: {
+      type: Number,
+      default: undefined
     }
   },
   emits: ['update:modelValue'],

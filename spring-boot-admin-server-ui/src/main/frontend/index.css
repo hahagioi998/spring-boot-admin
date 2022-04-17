@@ -33,6 +33,22 @@ th {
     text-align: left;
 }
 
+.table {
+    @apply text-left text-gray-500 dark:text-gray-400;
+}
+.table.table-full {
+    @apply w-full;
+}
+.table.table-sm {
+    @apply text-sm;
+}
+.table thead {
+    @apply text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400;
+}
+.table td, .table th {
+    @apply px-3 py-1;
+}
+
 .-rotate-90 {
     --tw-rotate: -90deg;
     transform: rotate(var(--tw-rotate));

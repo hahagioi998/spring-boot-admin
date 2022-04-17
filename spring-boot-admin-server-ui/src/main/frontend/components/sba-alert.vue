@@ -37,7 +37,7 @@
         />
         <p
           class="text-sm"
-          v-text="error.message"
+          v-text="message"
         />
       </div>
     </div>
@@ -62,7 +62,7 @@ export default {
       required: true
     },
     error: {
-      type: [Error, Object],
+      type: [Error, String],
       default: null
     },
     severity: {
@@ -88,6 +88,16 @@ export default {
     }
   },
   computed: {
+    message() {
+      if (this.error instanceof Error) {
+        return this.error.message;
+      }
+      if (typeof this.error === 'string') {
+        return this.error;
+      }
+
+      return null;
+    },
     borderClassNames() {
       if (this.$attrs.class?.indexOf('border-') >= 0) {
         return [];

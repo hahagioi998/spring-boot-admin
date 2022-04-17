@@ -21,7 +21,7 @@
   >
     <template #before>
       <sba-sticky-subnav v-if="env">
-        <div class="mx-6 flex">
+        <div class="flex">
           <div
             v-if="instance.hasEndpoint('refresh')"
             class="mr-1"

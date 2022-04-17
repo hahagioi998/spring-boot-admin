@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import {resolve} from 'path';
 import {viteStaticCopy} from "vite-plugin-static-copy";
 import postcss from "./postcss.config";
+import visualizer from "rollup-plugin-visualizer";
 
 // https://vitejs.dev/config/
 const root = resolve(__dirname, './src/main/frontend');
@@ -20,6 +21,9 @@ export default ({mode}) => {
     },
     plugins: [
       vue(),
+      visualizer(() => {
+        return { filename: resolve(__dirname, 'target/vite.bundle-size-analyzer.html') };
+      }),
       viteStaticCopy({
         targets: [
           {
@@ -37,12 +41,6 @@ export default ({mode}) => {
     css: {
       postcss
     },
-    optimizeDeps: {
-      exclude: [
-        'autolinker',
-        'lodash-es',
-      ]
-    },
     build: {
       outDir,
       rollupOptions: {
@@ -55,7 +53,6 @@ export default ({mode}) => {
     resolve: {
       alias: {
         '@': root,
-        'vue': 'vue/dist/vue.esm-bundler.js'
       },
     },
   })

@@ -18,7 +18,7 @@
   <sba-instance-section :error="error">
     <template #before>
       <sba-sticky-subnav>
-        <div class="mx-6 flex gap-2">
+        <div class="flex gap-2">
           <sba-action-button-scoped
             :instance-count="2"
             :action-fn="clearCaches"

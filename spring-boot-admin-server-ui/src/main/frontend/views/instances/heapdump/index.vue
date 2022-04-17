@@ -18,7 +18,7 @@
   <sba-instance-section>
     <template #before>
       <sba-sticky-subnav>
-        <div class="mx-6 text-right">
+        <div class="text-right">
           <sba-button @click="downloadHeap()">
             <font-awesome-icon icon="download" />&nbsp;
             <span v-text="$t('instances.heapdump.download')" />

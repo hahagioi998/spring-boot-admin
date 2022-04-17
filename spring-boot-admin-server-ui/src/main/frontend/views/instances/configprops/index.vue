@@ -21,18 +21,16 @@
   >
     <template #before>
       <sba-sticky-subnav>
-        <div class="mx-6">
-          <sba-input
-            v-model="filter"
-            name="filter"
-            type="search"
-            :placeholder="$t('term.filter')"
-          >
-            <template #prepend>
-              <font-awesome-icon icon="filter" />
-            </template>
-          </sba-input>
-        </div>
+        <sba-input
+          v-model="filter"
+          name="filter"
+          type="search"
+          :placeholder="$t('term.filter')"
+        >
+          <template #prepend>
+            <font-awesome-icon icon="filter" />
+          </template>
+        </sba-input>
       </sba-sticky-subnav>
     </template>
 

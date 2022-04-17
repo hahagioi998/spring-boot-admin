@@ -15,10 +15,16 @@
   -->
 
 <template>
-  <sba-instance-section :loading="!hasLoaded" :error="errorFetch">
-    <template v-if="threads" #before>
+  <sba-instance-section
+    :loading="!hasLoaded"
+    :error="errorFetch"
+  >
+    <template
+      v-if="threads"
+      #before
+    >
       <sba-sticky-subnav>
-        <div class="mx-6 text-right">
+        <div class="text-right">
           <sba-button @click="downloadThreaddump">
             <font-awesome-icon icon="download" />&nbsp;
             <span v-text="$t('instances.threaddump.download')" />
@@ -27,10 +33,17 @@
       </sba-sticky-subnav>
     </template>
     <template>
-      <sba-alert v-if="errorDownload" :error="errorDownload" :title="$t('instances.threaddump.download_failed')" />
+      <sba-alert
+        v-if="errorDownload"
+        :error="errorDownload"
+        :title="$t('instances.threaddump.download_failed')"
+      />
 
       <sba-panel>
-        <threads-list v-if="threads" :thread-timelines="threads" />
+        <threads-list
+          v-if="threads"
+          :thread-timelines="threads"
+        />
       </sba-panel>
     </template>
   </sba-instance-section>

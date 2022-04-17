@@ -21,7 +21,7 @@
   >
     <template #before>
       <sba-sticky-subnav>
-        <div class="mx-6 flex gap-2">
+        <div class="flex gap-2">
           <sba-toggle-scope-button
             v-if="instanceCount >= 1"
             v-model="scope"
@@ -97,12 +97,9 @@
         class="message is-warning"
       >
         <div class="message-body">
-          <font-awesome-icon
-            class="has-text-warning"
-            icon="exclamation-triangle"
-          />
-          <span
-            v-text="$t('instances.loggers.fetch_failed_some_instances', {failed: failedInstances, count: instanceCount})"
+          <sba-alert
+            severity="WARN"
+            :title="$t('instances.loggers.fetch_failed_some_instances', {failed: failedInstances, count: instanceCount})"
           />
         </div>
       </div>
@@ -121,6 +118,7 @@
 import {finalize, from, listen} from '@/utils/rxjs';
 import SbaInstanceSection from "../shell/sba-instance-section.vue";
 import LoggersList from "./loggers-list.vue";
+import SbaAlert from "../../../components/sba-alert.vue";
 
 const isClassName = name => /\.[A-Z]/.test(name);
 
@@ -144,7 +142,7 @@ const addLoggerCreationEntryIfLoggerNotPresent = (nameFilter, loggers) => {
 };
 
 export default {
-  components: {SbaInstanceSection, LoggersList},
+  components: {SbaAlert, SbaInstanceSection, LoggersList},
   props: {
     instanceCount: {
       type: Number,

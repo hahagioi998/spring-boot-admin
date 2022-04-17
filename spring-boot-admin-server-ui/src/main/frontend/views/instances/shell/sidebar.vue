@@ -20,6 +20,7 @@
     :class="{'w-60': sidebarOpen}"
   >
     <ul class="relative px-1 py-1 overflow-y-auto">
+      <!-- Instance info block -->
       <li class="relative mb-1 hidden md:block">
         <router-link
           class="sticky top-0 flex items-center text-sm py-4 px-6 text-left overflow-hidden text-gray-700 text-ellipsis rounded text-green-600 bg-green-50 transition duration-300 ease-in-out cursor-pointer"
@@ -36,6 +37,7 @@
         </router-link>
       </li>
 
+      <!-- sm: button toggle navigation -->
       <li class="block md:hidden">
         <a
           class="navbar-link navbar-link__group"
@@ -45,6 +47,7 @@
         </a>
       </li>
 
+      <!-- The actual nav -->
       <li
         v-for="group in enabledGroupedViews"
         :key="group.name"
@@ -81,10 +84,11 @@
           </svg>
         </router-link>
 
+        <!-- Le subnav -->
         <ul
           v-if="hasMultipleViews(group) && isActiveGroup(group)"
           class="relative block bg-white"
-          :class="{'hidden': !sidebarOpen}"
+          :class="{'hidden md:block': !sidebarOpen}"
         >
           <li
             v-for="view in group.views"

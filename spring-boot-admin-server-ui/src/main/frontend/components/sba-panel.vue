@@ -15,7 +15,7 @@
   -->
 
 <template>
-  <div class="shadow rounded-lg break-inside-avoid mb-6">
+  <div class="shadow border rounded-lg break-inside-avoid mb-6">
     <header
       v-if="showTitle"
       ref="header"

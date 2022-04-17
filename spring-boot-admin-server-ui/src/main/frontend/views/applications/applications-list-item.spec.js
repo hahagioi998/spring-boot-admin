@@ -20,13 +20,13 @@ import ApplicationListItem from './applications-list-item';
 import {applications} from '../../mocks/applications/data';
 import {screen, waitFor} from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import _ from 'lodash-es';
+import {cloneDeep} from "lodash-es";
 
 describe('application-list-item.vue', () => {
   let application;
 
   beforeEach(() => {
-    application = _.cloneDeep(applications[0])
+    application = cloneDeep(applications[0])
   });
 
   it('does not show shutdown button when shutdown endpoint is missing', () => {

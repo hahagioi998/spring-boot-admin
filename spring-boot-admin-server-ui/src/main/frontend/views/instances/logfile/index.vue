@@ -21,7 +21,7 @@
   >
     <template #before>
       <sba-sticky-subnav>
-        <div class="mx-6 flex items-center justify-end gap-1">
+        <div class="flex items-center justify-end gap-1">
           <div class="flex-1">
             <span v-text="$t('instances.logfile.label')" />&nbsp;
             <small

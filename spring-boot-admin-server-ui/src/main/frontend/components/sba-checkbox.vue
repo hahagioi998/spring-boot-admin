@@ -1,14 +1,14 @@
 <template>
   <div class="flex items-center">
     <input
-      id="configuredOnly"
+      :id="id"
       :checked="modelValue"
       type="checkbox"
       class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
       @change="$emit('update:modelValue', $event.target.checked)"
     >
     <label
-      for="configuredOnly"
+      :for="id"
       class="ml-2 font-medium text-gray-700"
       v-text="label"
     />
@@ -27,6 +27,11 @@ export default {
       required: true
     }
   },
-  emits: ['update:modelValue']
+  emits: ['update:modelValue'],
+  computed: {
+    id() {
+      return 'checkbox-' + this._.uid;
+    }
+  }
 }
 </script>

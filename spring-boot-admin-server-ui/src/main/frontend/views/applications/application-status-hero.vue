@@ -20,9 +20,9 @@
       <template v-else>
         <font-awesome-icon
           icon="minus-circle"
-          class="text-red-500 icon"
+          class="text-red-500 icon "
         />
-        <div>
+        <div class="text-center">
           <h1
             class="font-bold text-2xl"
             v-text="$t('applications.instances_down')"

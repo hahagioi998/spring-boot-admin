@@ -16,50 +16,77 @@
 
 <template>
   <div>
-    <label
-      v-if="hasLabel"
-      :for="id"
-      class="block text-sm font-medium text-gray-700"
-      v-text="label"
-    />
-    <div
-      class="flex rounded-md shadow-sm"
-      :class="{'mt-1': hasLabel}"
-    >
-      <span
-        v-if="$slots.prepend"
-        class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"
+    <div>
+      <datalist :id="datalistId">
+        <option
+          v-for="name in list"
+          :key="name"
+          v-text="name"
+        />
+      </datalist>
+      <label
+        v-if="hasLabel"
+        :for="id"
+        class="block text-sm font-medium text-gray-700"
+        v-text="label"
+      />
+      <div
+        class="flex rounded-md shadow-sm"
+        :class="{'mt-1': hasLabel}"
       >
-        <slot name="prepend" />
-      </span>
+        <span
+          v-if="$slots.prepend"
+          class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"
+        >
+          <slot name="prepend" />
+        </span>
 
-      <input
-        :id="id"
-        :value="modelValue"
-        :type="type"
-        :placeholder="placeholder"
-        :min="min"
-        class="focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 p-2 relative flex-1 block w-full rounded-none sm:text-sm border-gray-300"
-        :class="inputFieldClassNames"
-        @input="$event => $emit('update:modelValue', $event.target.value)"
-      >
+        <input
+          :id="id"
+          :value="modelValue"
+          :type="type"
+          :placeholder="placeholder"
+          :min="min"
+          :list="datalistId"
+          class="focus:z-10 p-2 relative flex-1 block w-full rounded-none sm:text-sm"
+          :class="classNames(inputFieldClassNames, inputClass)"
+          @input="handleInput"
+        >
+        <span
+          v-if="$slots.append"
+          class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"
+        >
+          <slot name="append" />
+        </span>
+      </div>
       <span
-        v-if="$slots.append"
-        class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"
+        v-if="$slots.info"
+        class="mt-2 text-sm text-gray-500"
       >
-        <slot name="append" />
+        <slot name="info" />
       </span>
     </div>
-    <span
-      v-if="$slots.info"
-      class="mt-2 text-sm text-gray-500"
+    <div
+      v-if="error || hint"
+      class="py-2"
     >
-      <slot name="info" />
-    </span>
+      <div
+        v-if="hint && !error"
+        class="text-xs text-gray-500"
+        v-text="hint"
+      />
+      <div
+        v-if="error"
+        class="text-xs text-red-500"
+        v-text="error"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import classNames from "classnames";
+
 export default {
   props: {
     label: {
@@ -72,7 +99,7 @@ export default {
     },
     name: {
       type: String,
-      required: true
+      default: ""
     },
     type: {
       type: String,
@@ -85,9 +112,25 @@ export default {
     min: {
       type: Number,
       default: undefined
+    },
+    list: {
+      type: Array,
+      default: undefined
+    },
+    inputClass: {
+      type: [String, Array, Object],
+      default: undefined
+    },
+    error: {
+      type: String,
+      default: undefined
+    },
+    hint: {
+      type: String,
+      default: undefined
     }
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'input'],
   computed: {
     hasLabel() {
       return this.label !== null && this.label.trim() !== '';
@@ -95,11 +138,20 @@ export default {
     id() {
       return (this.name || "").replace(/[^\w]/gi, '')
     },
+    datalistId() {
+      return "listId-" + this._.uid;
+    },
     inputFieldClassNames() {
       const hasAppend = this.hasSlot('append');
       const hasPrepend = this.hasSlot('prepend');
 
       const classNames = [];
+
+      if (this.error) {
+        classNames.push('focus:ring-red-500 focus:border-red-500 border-red-400')
+      } else {
+        classNames.push('focus:ring-indigo-500 focus:border-indigo-500 border-gray-300')
+      }
 
       if (!hasAppend) {
         classNames.push('rounded-r-md')
@@ -112,6 +164,11 @@ export default {
     }
   },
   methods: {
+    classNames,
+    handleInput($event) {
+      this.$emit('update:modelValue', $event.target.value)
+      this.$emit('input', $event.target.value)
+    },
     hasSlot(slot) {
       return !!this.$slots[slot]
         && Object.keys(this.$slots[slot]).length > 0

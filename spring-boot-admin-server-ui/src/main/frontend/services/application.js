@@ -126,6 +126,10 @@ class Application {
     });
   }
 
+  async resetEnv() {
+    return this.axios.delete(uri`actuator/env`);
+  }
+
   async refreshContext() {
     return this.axios.post(uri`actuator/refresh`);
   }

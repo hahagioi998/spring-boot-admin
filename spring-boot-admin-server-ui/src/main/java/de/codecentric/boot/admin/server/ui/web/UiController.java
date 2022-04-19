@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import de.codecentric.boot.admin.server.ui.config.AdminServerUiProperties.BackgroundColors;
+import de.codecentric.boot.admin.server.ui.config.AdminServerUiProperties.UiTheme;
 import de.codecentric.boot.admin.server.ui.config.AdminServerUiProperties.PollTimer;
 import de.codecentric.boot.admin.server.ui.extensions.UiExtension;
 import de.codecentric.boot.admin.server.ui.extensions.UiExtensions;
@@ -107,6 +107,11 @@ public class UiController {
 		return "sba-settings.js";
 	}
 
+	@GetMapping(path = "/variables.css", produces = "text/css")
+	public String variablesCss() {
+		return "variables.css";
+	}
+
 	@GetMapping(path = "/login", produces = MediaType.TEXT_HTML_VALUE)
 	public String login() {
 		return "login";
@@ -128,7 +133,7 @@ public class UiController {
 
 		private final PollTimer pollTimer;
 
-		private final BackgroundColors background;
+		private final UiTheme theme;
 
 		private final boolean notificationFilterEnabled;
 

@@ -1,0 +1,7 @@
+:root {
+    --main-color-darker: /*[(${uiSettings.theme.palette.mainColorDarker})]*/ #f0fdf4;
+    --main-color-dark: /*[(${uiSettings.theme.palette.mainColorDark})]*/ #86efac;
+    --main-color: /*[(${uiSettings.theme.palette.mainColor})]*/ #22c55e;
+    --main-color-light: /*[(${uiSettings.theme.palette.mainColorLight})]*/ #15803d;
+    --main-color-lighter: /*[(${uiSettings.theme.palette.mainColorLighter})]*/ #166534;
+}

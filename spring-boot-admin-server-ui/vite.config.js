@@ -8,9 +8,6 @@ import visualizer from "rollup-plugin-visualizer";
 // https://vitejs.dev/config/
 const root = resolve(__dirname, './src/main/frontend');
 const outDir = resolve(__dirname, './target/dist');
-const src = resolve(root, './sba-settings.js');
-
-// Load app-level env vars to node-level env vars.
 
 export default ({mode}) => {
   process.env = {...process.env, ...loadEnv(mode, process.cwd())};
@@ -22,16 +19,12 @@ export default ({mode}) => {
     plugins: [
       vue(),
       visualizer(() => {
-        return { filename: resolve(__dirname, 'target/vite.bundle-size-analyzer.html') };
+        return {filename: resolve(__dirname, 'target/vite.bundle-size-analyzer.html')};
       }),
       viteStaticCopy({
         targets: [
           {
-            src: src,
-            dest: outDir
-          },
-          {
-            src: resolve(root, 'assets'),
+            src: [resolve(root, './sba-settings.js'), resolve(root, './variables.css'), resolve(root, 'assets')],
             dest: outDir
           }
         ]
@@ -47,7 +40,7 @@ export default ({mode}) => {
         input: {
           sba: resolve(root, './index.html')
         },
-        external: ['sba-settings.js']
+        external: ['sba-settings.js', 'variables.css']
       }
     },
     resolve: {

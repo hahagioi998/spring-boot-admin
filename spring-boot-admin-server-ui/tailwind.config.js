@@ -1,5 +1,12 @@
 const colors = {
   ...{
+    'main': {
+      '200': 'var(--main-color-lighter)',
+      '300': 'var(--main-color-light)',
+      '500': 'var(--main-color)',
+      '700': 'var(--main-color-dark)',
+      '800': 'var(--main-color-darker)'
+    },
     'orange': {
       DEFAULT: '#ED8936',
       '50': '#FCECDF',

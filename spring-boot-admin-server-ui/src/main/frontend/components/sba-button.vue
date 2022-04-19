@@ -64,7 +64,7 @@ export default {
 }
 
 .btn.is-success {
-  @apply focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium  text-sm;
+  @apply focus:outline-none text-white bg-main-700 hover:bg-main-800 focus:ring-4 focus:ring-green-300 font-medium  text-sm;
 }
 
 .btn.is-light {

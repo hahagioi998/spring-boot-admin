@@ -1,0 +1,14 @@
+spring:
+  boot:
+    admin:
+      ui:
+        theme:
+          background:
+            start: "#CB6CD8"
+            stop: "#451B66"
+          palette:
+            main-color-lighter: "#fdf2f8"
+            main-color-light: "#f9a8d4"
+            main-color: "#ec4899"
+            main-color-dark: "#be185d"
+            main-color-darker: "#9d174d"

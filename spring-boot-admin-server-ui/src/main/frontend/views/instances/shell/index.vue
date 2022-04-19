@@ -85,7 +85,7 @@
       }
     },
     created() {
-      this.backgroundColors = sbaConfig.uiSettings.background;
+      this.backgroundColors = sbaConfig.uiSettings.theme.background;
     },
     install({viewRegistry}) {
       viewRegistry.addView({

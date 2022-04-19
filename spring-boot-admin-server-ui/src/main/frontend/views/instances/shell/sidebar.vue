@@ -16,14 +16,14 @@
 
 <template>
   <aside
-    class="h-full flex flex-col shadow-md bg-white backdrop-filter backdrop-blur-lg bg-opacity-40 z-40 w-10 md:w-60 transition-all left-0 pb-14 fixed"
+    class="h-full flex flex-col shadow-md bg-white backdrop-filter backdrop-blur-lg bg-opacity-70 z-40 w-10 md:w-60 transition-all left-0 pb-14 fixed"
     :class="{'w-60': sidebarOpen}"
   >
     <ul class="relative px-1 py-1 overflow-y-auto">
       <!-- Instance info block -->
       <li class="relative mb-1 hidden md:block">
         <router-link
-          class="sticky top-0 flex items-center text-sm py-4 px-6 text-left overflow-hidden text-gray-700 text-ellipsis rounded text-green-600 bg-green-50 transition duration-300 ease-in-out cursor-pointer"
+          class="instance-info-block"
           :to="{name: 'instances/details', params: {instanceId: instance.id}}"
           :class="`instance-summary--${instance.statusInfo.status}`"
         >
@@ -87,7 +87,7 @@
         <!-- Le subnav -->
         <ul
           v-if="hasMultipleViews(group) && isActiveGroup(group)"
-          class="relative block bg-white"
+          class="relative block"
           :class="{'hidden md:block': !sidebarOpen}"
         >
           <li
@@ -191,13 +191,19 @@ export default {
 }
 </script>
 
-<style lang="css">
-.navbar-link {
-  @apply cursor-pointer duration-300 ease-in-out flex hover:bg-green-50 hover:text-green-600 items-center overflow-hidden py-4 rounded text-gray-700 text-sm transition whitespace-nowrap;
+<style scoped>
+.instance-info-block {
+  @apply flex items-center text-sm py-4 px-6 text-left overflow-hidden text-ellipsis rounded transition duration-300 ease-in-out cursor-pointer;
+  color: var(--main-color);
+  background-color: var(--main-color-lighter);
 }
-
-.navbar-link__active {
-  @apply text-green-600 bg-green-50;
+.navbar-link {
+  @apply cursor-pointer duration-300 ease-in-out flex  items-center overflow-hidden py-4 rounded text-sm transition whitespace-nowrap;
+  @apply text-gray-700;
+}
+.navbar-link:hover, .navbar-link__active {
+  color: var(--main-color);
+  background-color: var(--main-color-lighter);
 }
 
 .navbar-link__group_item {

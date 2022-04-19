@@ -1,8 +1,8 @@
 <template>
-  <span class="inline-flex bg-white leading-none rounded-md p-1 shadow-sm text-teal text-sm border border-gray-300">
+  <span class="inline-flex bg-white leading-none rounded-md p-1 shadow-sm text-sm border border-gray-300">
     <span
       v-if="label"
-      class="inline-flex bg-green-200 rounded text-gray-600 py-1 px-3  justify-center items-center"
+      class="inline-flex bg-main-200 rounded text-gray-600 py-1 px-3 justify-center items-center"
       v-text="label"
     />
     <span

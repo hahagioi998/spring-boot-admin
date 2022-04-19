@@ -18,13 +18,13 @@ const Template = (args) => {
     },
     template: `
       <sba-panel @close="onClose" v-bind="args">
-      <template v-slot:actions v-if="${'actions' in args}">
+      <template #actions v-if="${'actions' in args}">
         ${args.actions}
       </template>
-      <template v-slot>
+      <template #default>
         ${args.slot}
       </template>
-      <template v-slot:footer v-if="${'footer' in args}">
+      <template #footer v-if="${'footer' in args}">
         ${args.footer}
       </template>
       </sba-panel>

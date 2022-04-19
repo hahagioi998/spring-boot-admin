@@ -17,7 +17,7 @@
 <template>
   <div class="shadow border rounded-lg break-inside-avoid mb-6">
     <header
-      v-if="showTitle"
+      v-if="hasTitle"
       ref="header"
       v-sticks-below="headerSticksBelow"
       class="rounded-t-lg flex justify-between px-4 py-5 sm:px-6 items-center border-b bg-white backdrop-filter backdrop-blur-sm bg-opacity-80 transition-all"
@@ -49,7 +49,8 @@
     </header>
     <div
       v-if="'default' in $slots"
-      class=" border-gray-200 px-4 py-3 bg-white"
+      class="border-gray-200 px-4 py-3 bg-white"
+      :class="{'rounded-t-lg': !hasTitle, 'rounded-b-lg overflow-hidden': !('footer' in $slots) }"
     >
       <sba-loading-spinner
         v-if="loading"
@@ -98,16 +99,18 @@ export default {
       default: false
     }
   },
+  emits: ['close'],
   data() {
+    console.log(this.$slots.title);
     return {
       headerTopValue: 0,
-      onScrollFn: undefined
+      onScrollFn: undefined,
     }
   },
   computed: {
-    showTitle() {
-      return this.title || 'title' in this.$slots || 'actions' in this.$slots;
-    }
+    hasTitle() {
+      return !!this.title || 'title' in this.$slots || 'actions' in this.$slots;
+    },
   },
   mounted() {
     if (this.headerSticksBelow) {
